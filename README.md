@@ -1,43 +1,72 @@
+<div align="center">
+
 # Abandoned but Not Forgotten
 
-> They stopped moving. Their stories didn't.
+**They stopped moving. Their stories didn't.**
 
-A scroll-driven website built for the **NASA Space Apps Challenge 2026**. Students aged 10–15 meet six pieces of NASA hardware left on the Moon and Mars, learn the science each one made possible, and finish every story by answering the question it left behind.
+A scroll-driven, 3D storytelling experience for the **NASA Space Apps Challenge 2026**.<br />
+Students aged 10–15 meet six pieces of NASA hardware left on the Moon and Mars, learn the science each one made possible, and finish every story by answering the question it left behind.
 
-![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white)
-![Three.js](https://img.shields.io/badge/Three.js-r169-000000?logo=threedotjs&logoColor=white)
-![Static site](https://img.shields.io/badge/backend-none-informational)
+<br />
 
-## Table of contents
+![React](https://img.shields.io/badge/React-18-20232a?style=for-the-badge&logo=react&logoColor=61dafb)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-20232a?style=for-the-badge&logo=typescript&logoColor=3178c6)
+![Vite](https://img.shields.io/badge/Vite-5-20232a?style=for-the-badge&logo=vite&logoColor=646cff)
+![Three.js](https://img.shields.io/badge/Three.js-r169-20232a?style=for-the-badge&logo=threedotjs&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-20232a?style=for-the-badge&logo=vercel&logoColor=white)
 
-- [Features](#features)
-- [Getting started](#getting-started)
-- [Scripts](#scripts)
-- [Project structure](#project-structure)
-- [Data and fact-checking](#data-and-fact-checking)
-- [Tech stack](#tech-stack)
-- [Accessibility and privacy](#accessibility-and-privacy)
-- [Deployment](#deployment)
-- [Roadmap](#roadmap)
-- [AI use](#ai-use)
+[Features](#features) · [The collection](#the-collection) · [Quick start](#quick-start) · [Architecture](#architecture) · [Data integrity](#data-integrity) · [Accessibility](#accessibility-and-privacy) · [Roadmap](#roadmap)
+
+</div>
+
+<br />
+
+## Overview
+
+Every object in this project was built to do one job, and then it was left behind. Each story follows the same five-chapter arc, from first sight to the open question the machine left unanswered, so a young reader moves from curiosity to understanding to their own hypothesis.
+
+| | |
+|---|---|
+| **Audience** | Students aged 10–15, and the teachers who guide them |
+| **Format** | Static single-page site with scroll-driven 3D scenes |
+| **Content** | Six objects on the Moon and Mars, plus a Voyager 1 epilogue |
+| **Sourcing** | Every record links to `nasa.gov`, and is checked at build time |
+| **Privacy** | No backend, no accounts, no tracking |
+
+## The collection
+
+| Object | Place | Year |
+|---|---|---|
+| Apollo 11 Laser Ranging Retroreflector | Moon | 1969 |
+| Apollo Lunar Roving Vehicle | Moon | 1971 |
+| Surveyor 3 | Moon | 1967 |
+| Sojourner Rover (Mars Pathfinder) | Mars | 1997 |
+| Opportunity Rover | Mars | 2004 |
+| InSight Lander | Mars | 2018 |
+| *Epilogue:* Voyager 1 | Beyond the Moon and Mars | 1977 |
 
 ## Features
 
+**Storytelling**
 - **Five-chapter stories.** Each object's story is driven by a single JSON record, so content and layout stay separate.
-- **Interactive 3D viewer.** Rotate and zoom each object, with hotspots on three parts per model and a NASA photo fallback when WebGL is unavailable.
-- **Scroll-driven 3D scenes.** The landing page flies from the Moon to Mars on real NASA globes, and chapter 4 descends from orbit to the exact landing site.
-- **Confirmed, Scientists think, Still unknown.** Every story separates established fact from open questions.
-- **"Your next mission" choice.** Students answer the question the object left behind and get feedback on each option.
+- **Confirmed, Scientists think, Still unknown.** Every story separates established fact from inference and from open questions.
+- **"Your next mission."** Students answer the question the object left behind and get feedback on each option.
 - **Sources on every object.** A "Where this comes from" panel links back to NASA.
-- **Timeline and map.** A 1967–2022 timeline, plus a Moon and Mars map that places each object at its real latitude and longitude.
+
+**Immersive 3D**
+- **Interactive viewer.** Rotate and zoom each object, with hotspots on three parts per model.
+- **Scroll-driven scenes.** The landing page flies from the Moon to Mars on real NASA globes, with each object pinned at its true coordinates. Chapter 4 descends from orbit to the exact landing site.
+- **Graceful fallback.** Browsers without WebGL get NASA photographs instead.
+
+**Exploration and teaching**
+- **Timeline and map.** A 1967–2022 timeline, plus a Moon and Mars map placing each object at its real latitude and longitude.
 - **Question Constellation.** Students collect their own questions, stored in `localStorage` only.
 - **Printable teacher page.** Available at `#/teacher`, with print styles included.
-- **Voyager 1 epilogue.** Clearly labelled as going beyond the Moon and Mars.
 
 <details>
-<summary>Requirement traceability (PRD v2.0)</summary>
+<summary><strong>Requirement traceability (PRD v2.0)</strong></summary>
+
+<br />
 
 | ID | Requirement | Where |
 |---|---|---|
@@ -58,7 +87,7 @@ A scroll-driven website built for the **NASA Space Apps Challenge 2026**. Studen
 
 </details>
 
-## Getting started
+## Quick start
 
 **Prerequisites:** Node.js 18 or later and npm.
 
@@ -71,8 +100,6 @@ npm run dev
 
 The dev server runs at <http://localhost:5173>.
 
-## Scripts
-
 | Command | Description |
 |---|---|
 | `npm run dev` | Start the Vite dev server |
@@ -81,7 +108,19 @@ The dev server runs at <http://localhost:5173>.
 | `npm run validate` | Validate `src/data/objects.json` against the schema |
 | `npm run validate:strict` | Same, and fail while any fact-check is still `PENDING`. Run before submitting. |
 
-## Project structure
+## Architecture
+
+```mermaid
+flowchart LR
+    A[objects.json] -->|Ajv + schema| B[validate-data.mjs]
+    B -->|build gate| C[Vite build]
+    A --> D[React pages]
+    D --> E[Story, World, Timeline, Teacher]
+    D --> F[Three.js scenes]
+    F --> G[Globes, model viewer, descent]
+    C --> H[Static dist/]
+    H --> I[Vercel]
+```
 
 ```
 .
@@ -98,9 +137,20 @@ The dev server runs at <http://localhost:5173>.
 └── index.html
 ```
 
-## Data and fact-checking
+### Tech stack
 
-All story content lives in `src/data/objects.json`. `scripts/validate-data.mjs` checks it against `scripts/object.schema.json` with Ajv, and the build fails if a record:
+| Layer | Tools |
+|---|---|
+| Framework | React 18, TypeScript, Vite |
+| 3D | Three.js via React Three Fiber, Drei and postprocessing, lazy-loaded after first paint |
+| Motion | GSAP with ScrollTrigger, Framer Motion, Lenis smooth scrolling |
+| Validation | Ajv with JSON Schema |
+| Storage | `localStorage` only |
+| Hosting | Vercel |
+
+## Data integrity
+
+All story content lives in `src/data/objects.json`. `scripts/validate-data.mjs` checks it against `scripts/object.schema.json`, and **the build fails** if a record:
 
 - is missing `sources` (which must be `nasa.gov` URLs) or `verifiedBy`;
 - has a mission text over 80 words;
@@ -110,39 +160,39 @@ All story content lives in `src/data/objects.json`. `scripts/validate-data.mjs` 
 
 Each object shows a "Draft" badge until a named checker and date are recorded in `verifiedBy`.
 
-## Tech stack
-
-- **Framework:** React 18, TypeScript, Vite
-- **3D:** Three.js through React Three Fiber, Drei and postprocessing, lazy-loaded after first paint
-- **Animation:** GSAP with ScrollTrigger for scroll-driven motion, Framer Motion for small UI transitions, Lenis for smooth scrolling
-- **Validation:** Ajv
-- **Storage:** `localStorage` only. There is no backend, no accounts and no tracking.
-
 ## Accessibility and privacy
 
 - Full keyboard navigation, with 3D hotspots mirrored as real buttons.
 - Alt text on images.
 - `prefers-reduced-motion` disables auto-rotate, twinkle and other animations.
-- 3D scenes fall back to NASA photos when WebGL is unavailable.
 - Mobile-friendly layout, tested at 375 px wide.
 - No analytics or tracking. The only stored data is the student's own constellation, kept in their browser.
 
 ## Deployment
 
-The build is fully static, so `dist/` can be hosted anywhere.
-
-The site is deployed on Vercel. Import the repo and choose the **Vite** framework preset. Vercel builds with `npm run build` and serves `dist/`.
+The build is fully static and deployed on **Vercel**. Import the repository and choose the **Vite** framework preset. Vercel builds with `npm run build` and serves `dist/`.
 
 ## Roadmap
 
-- [ ] Fact-check every object against its linked NASA sources, then record `verifiedBy.checker` and `verifiedBy.date`. This is blocking for submission.
-- [ ] Replace the hand-built models (retroreflector, Lunar Rover, Surveyor 3, Sojourner) with better ones, if available. NASA publishes none for these. Compress new models with:
-  ```bash
-  npx gltf-transform optimize in.glb public/models/<id>.glb --compress meshopt --texture-compress false
-  ```
-  then set `"modelPath"` and place hotspots using `?debug` (open `http://localhost:5173/?debug#/object/<id>` and click the model to print coordinates) or `scripts/model-geometry.mjs`.
+- [ ] Fact-check every object against its linked NASA sources, then record `verifiedBy.checker` and `verifiedBy.date`. **Blocking for submission.**
+- [ ] Replace the hand-built models (retroreflector, Lunar Rover, Surveyor 3, Sojourner) with better ones, if available. NASA publishes none for these.
 - [ ] Re-check the 2026 submission guide when it is released on 13 November.
 - [ ] Record the 30-second demo with English subtitles.
+
+<details>
+<summary><strong>Adding or replacing a 3D model</strong></summary>
+
+<br />
+
+Compress the model, then register it in the JSON:
+
+```bash
+npx gltf-transform optimize in.glb public/models/<id>.glb --compress meshopt --texture-compress false
+```
+
+Set `"modelPath"` for the object, then place hotspots using `?debug`: open `http://localhost:5173/?debug#/object/<id>` and click the model to print coordinates to the console. `scripts/model-geometry.mjs` is also available.
+
+</details>
 
 ## AI use
 
@@ -150,4 +200,12 @@ AI tools (Claude) helped write the code and draft the story text. Every AI-draft
 
 ## Credits
 
-All imagery and 3D models come from NASA, including the NASA Image and Video Library and NASA 3D Resources. See the in-app About page for full credits.
+All imagery and 3D models come from NASA, including the NASA Image and Video Library and NASA 3D Resources. See the in-app About page for full credits. This project is not affiliated with or endorsed by NASA.
+
+<div align="center">
+
+<br />
+
+*Built for the NASA Space Apps Challenge 2026.*
+
+</div>
