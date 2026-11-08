@@ -1,11 +1,22 @@
 <div align="center">
 
-# Abandoned but Not Forgotten
+<img src="docs/banner.svg" alt="Abandoned but Not Forgotten. They stopped moving. Their stories didn't." width="100%" />
 
-**They stopped moving. Their stories didn't.**
+<br />
 
 A scroll-driven, 3D storytelling experience for the **NASA Space Apps Challenge 2026**.<br />
 Students aged 10–15 meet six pieces of NASA hardware left on the Moon and Mars, learn the science each one made possible, and finish every story by answering the question it left behind.
+
+<br />
+
+<table>
+<tr>
+<td align="center"><strong>6</strong><br /><sub>objects on the<br />Moon and Mars</sub></td>
+<td align="center"><strong>5</strong><br /><sub>chapters in<br />every story</sub></td>
+<td align="center"><strong>1967–2022</strong><br /><sub>spanning<br />five decades</sub></td>
+<td align="center"><strong>0</strong><br /><sub>trackers, accounts<br />or backends</sub></td>
+</tr>
+</table>
 
 <br />
 
@@ -22,6 +33,9 @@ Students aged 10–15 meet six pieces of NASA hardware left on the Moon and Mars
 <br />
 
 ## Overview
+
+> [!NOTE]
+> This is a student-facing educational project. Every fact is drafted with AI assistance and must be verified against a NASA source by a named teammate before it is published as verified. See [Data integrity](#data-integrity).
 
 Every object in this project was built to do one job, and then it was left behind. Each story follows the same five-chapter arc, from first sight to the open question the machine left unanswered, so a young reader moves from curiosity to understanding to their own hypothesis.
 
@@ -88,6 +102,9 @@ Every object in this project was built to do one job, and then it was left behin
 </details>
 
 ## Quick start
+
+> [!TIP]
+> Run `npm run validate:strict` before submitting. It fails while any object is still marked `PENDING`.
 
 **Prerequisites:** Node.js 18 or later and npm.
 
