@@ -85,7 +85,6 @@ The dev server runs at <http://localhost:5173>.
 
 ```
 .
-├── .github/workflows/   GitHub Pages deploy workflow
 ├── public/
 │   ├── models/          Compressed NASA glTF models
 │   └── textures/        Moon and Mars globe textures
@@ -132,8 +131,7 @@ Each object shows a "Draft" badge until a named checker and date are recorded in
 
 The build is fully static, so `dist/` can be hosted anywhere.
 
-- **GitHub Pages:** a workflow is included at `.github/workflows/deploy.yml`. In the repository settings, set **Pages → Source** to **GitHub Actions**.
-- **Vercel:** import the repo and choose the **Vite** framework preset.
+The site is deployed on Vercel. Import the repo and choose the **Vite** framework preset. Vercel builds with `npm run build` and serves `dist/`.
 
 ## Roadmap
 
