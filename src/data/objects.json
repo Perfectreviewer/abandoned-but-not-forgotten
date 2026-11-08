@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "apollo-11-retroreflector",
+    "name": "Apollo 11 Laser Ranging Retroreflector",
+    "shortName": "Laser Retroreflector",
+    "location": "moon",
+    "site": "Tranquility Base, Sea of Tranquility",
+    "coordinates": {
+      "lat": 0.67,
+      "lon": 23.47
+    },
+    "date": "1969-07-21",
+    "year": 1969,
+    "status": "still-working",
+    "statusText": "Still working. Observatories on Earth still fire lasers at it and catch the light that bounces back.",
+    "character": "A panel of mirrors that has been catching laser light for more than 50 years, and has never needed a battery.",
+    "purpose": "Reflect laser light back to Earth so scientists can measure the Earth–Moon distance very precisely.",
+    "mission": "On 21 July 1969, Buzz Aldrin and Neil Armstrong set down a small panel of 100 special mirrors near their lunar module. Each mirror is a 'corner cube': it sends light straight back to wherever it came from. NASA left it so scientists on Earth could fire a laser at the Moon, time the echo, and measure the distance between our two worlds.",
+    "discoveries": [
+      {
+        "title": "The Moon is slowly drifting away",
+        "text": "Timing laser echoes shows the Moon moves about 3.8 cm farther from Earth every year, roughly as fast as your fingernails grow.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/as11-40-5948/as11-40-5948~medium.jpg",
+          "alt": "Buzz Aldrin standing on the Moon beside the experiments he just set up, with the lunar module behind him.",
+          "credit": "NASA",
+          "nasaId": "as11-40-5948"
+        }
+      },
+      {
+        "title": "Einstein passed another test",
+        "text": "Measuring the Earth–Moon distance so precisely lets scientists check Einstein's theory of gravity. So far, it has held up.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA13037/PIA13037~small.jpg",
+          "alt": "Close-up of the larger retroreflector left by Apollo 15, a grid of round mirror cells.",
+          "credit": "NASA (Apollo 15 retroreflector)",
+          "nasaId": "PIA13037"
+        }
+      },
+      {
+        "title": "A clue about the Moon's insides",
+        "text": "Tiny wobbles in how the Moon spins, measured by laser, hint that it has a liquid layer deep inside."
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "cubes",
+        "label": "Corner-cube mirrors",
+        "text": "100 fused-silica corner cubes, each about 3.8 cm across. Shine light at one from any angle and it goes straight back.",
+        "position": [
+          -0.1,
+          0,
+          0.2
+        ]
+      },
+      {
+        "id": "frame",
+        "label": "Aluminium frame",
+        "text": "Holds the mirrors in neat rows and shades them a little from the harsh sunlight.",
+        "position": [
+          0.74,
+          -0.05,
+          0.15
+        ]
+      },
+      {
+        "id": "legs",
+        "label": "Tilted stand",
+        "text": "The astronauts aimed the panel at Earth by hand. Because the Moon always shows Earth the same face, it never needs re-aiming.",
+        "position": [
+          0.62,
+          -0.22,
+          -0.48
+        ]
+      }
+    ],
+    "confirmed": [
+      "The reflector still works more than 50 years after it was placed.",
+      "The Moon is moving away from Earth by about 3.8 cm each year."
+    ],
+    "inferred": [
+      "The Moon probably has a liquid layer around its core, based on how it wobbles as it spins.",
+      "Moon dust has probably dimmed the mirrors a little over the decades."
+    ],
+    "unknown": [
+      "How many more decades the mirrors will keep working as dust slowly settles on them."
+    ],
+    "question": "What else could we learn from tools left on the Moon?",
+    "nextMissionChoices": [
+      {
+        "id": "new-mirrors",
+        "label": "Place new, more precise mirrors on the Moon",
+        "theme": "tools",
+        "feedback": "Great thinking. Better mirrors mean sharper measurements, and sharper measurements can catch tiny effects nobody has seen yet. NASA is already sending a next-generation retroreflector to the Moon for exactly this reason."
+      },
+      {
+        "id": "bring-home",
+        "label": "Bring an old Apollo tool home to study how the Moon changed it",
+        "theme": "tools",
+        "feedback": "That's how real engineers think. Apollo 12 astronauts did this with Surveyor 3, and studying how materials age on the Moon helps us build gear that will last for future crews."
+      },
+      {
+        "id": "listen",
+        "label": "Leave instruments that listen for moonquakes",
+        "theme": "geology",
+        "feedback": "Smart pick. Apollo astronauts left seismometers too, and they recorded moonquakes for years. A new network could tell us even more about what is hiding inside the Moon."
+      }
+    ],
+    "modelKind": "retroreflector",
+    "modelPath": null,
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/as11-40-5948/as11-40-5948~medium.jpg",
+      "alt": "Buzz Aldrin on the Moon beside the Apollo 11 experiments, including the laser reflector.",
+      "credit": "NASA",
+      "nasaId": "as11-40-5948"
+    },
+    "restImage": null,
+    "teacherPrompts": [
+      "Light takes about 2.5 seconds to reach the Moon and come back. Use the speed of light to estimate the Earth–Moon distance.",
+      "Why might a simple object with no power outlast complex machines?"
+    ],
+    "sources": [
+      {
+        "title": "Apollo 11 mission overview",
+        "url": "https://www.nasa.gov/mission/apollo-11/",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA Image and Video Library: AS11-40-5948",
+        "url": "https://images.nasa.gov/details/as11-40-5948",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: simplified stand-in built by the team (no NASA model published). Background: \"Apollo Lunar Module\", NASA 3D Resources. Photos: NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": false
+  },
+  {
+    "id": "apollo-lunar-roving-vehicle",
+    "name": "Apollo Lunar Roving Vehicle",
+    "shortName": "Lunar Rover",
+    "location": "moon",
+    "site": "Hadley–Apennine (Apollo 15), Descartes Highlands (Apollo 16), Taurus–Littrow (Apollo 17)",
+    "coordinates": {
+      "lat": 26.13,
+      "lon": 3.63
+    },
+    "date": "1971-07-31",
+    "year": 1971,
+    "status": "retired",
+    "statusText": "Parked for good. All three rovers still sit where the last Apollo crews left them.",
+    "character": "An electric car that folded up like origami, rode to the Moon, and was left parked with the keys in, so to speak.",
+    "purpose": "Carry two astronauts, their tools and their samples much farther than they could walk.",
+    "mission": "Walking in bulky spacesuits is slow and tiring, so NASA built an electric car that folded up and rode to the Moon tucked against the lunar module. On Apollo 15, 16 and 17 it carried two astronauts, their tools and their rock samples kilometres farther than they could ever walk. When each crew flew home, their rover had to stay behind.",
+    "discoveries": [
+      {
+        "title": "The 'Genesis Rock'",
+        "text": "Apollo 15's crew found a piece of the Moon's ancient crust, about 4 billion years old.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/S71-42955/S71-42955~medium.jpg",
+          "alt": "Lunar sample 15415, a pale grey rock nicknamed the Genesis Rock, in a lab.",
+          "credit": "NASA",
+          "nasaId": "S71-42955"
+        }
+      },
+      {
+        "title": "Orange soil",
+        "text": "On Apollo 17, geologist Harrison Schmitt spotted orange soil. It turned out to be tiny glass beads sprayed out by ancient volcanoes.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/as17-137-20989/as17-137-20989~medium.jpg",
+          "alt": "Orange-coloured soil in a trench on the Moon at Shorty Crater.",
+          "credit": "NASA",
+          "nasaId": "as17-137-20989"
+        }
+      },
+      {
+        "title": "More Moon, per trip",
+        "text": "With wheels, crews could visit many sites in one mission. Apollo 17 drove about 36 km in total.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/as15-86-11603/as15-86-11603~medium.jpg",
+          "alt": "Astronaut James Irwin working beside the lunar rover with mountains behind.",
+          "credit": "NASA",
+          "nasaId": "as15-86-11603"
+        }
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "wheels",
+        "label": "Wire-mesh wheels",
+        "text": "Woven from zinc-coated steel wire instead of rubber, which would not survive the Moon's extreme heat and cold.",
+        "position": [
+          0.98,
+          -0.31,
+          0.92
+        ]
+      },
+      {
+        "id": "batteries",
+        "label": "Batteries",
+        "text": "Two 36-volt batteries powered a small motor in each wheel. They were not rechargeable: once they ran out, the drive was over.",
+        "position": [
+          0.88,
+          0.14,
+          -0.05
+        ]
+      },
+      {
+        "id": "camera",
+        "label": "TV camera and antenna",
+        "text": "Controlled from Earth. On Apollo 17 it filmed the lunar module blasting off, the first time liftoff from the Moon was followed live on camera.",
+        "position": [
+          1.1,
+          0.78,
+          0.32
+        ]
+      }
+    ],
+    "confirmed": [
+      "Rovers let Apollo 15, 16 and 17 crews explore far more ground than earlier crews on foot.",
+      "Samples they collected include the ~4-billion-year-old Genesis Rock and volcanic orange glass beads."
+    ],
+    "inferred": [
+      "Scientists think the Moon's oldest pale crust formed when light minerals floated to the top of a huge ocean of molten rock."
+    ],
+    "unknown": [
+      "How well the rovers have survived 50 years of harsh sunlight, deep cold and tiny meteorite impacts."
+    ],
+    "question": "Where would you drive a rover on the Moon next, and why?",
+    "nextMissionChoices": [
+      {
+        "id": "south-pole",
+        "label": "The Moon's south pole, near craters that never see sunlight",
+        "theme": "water",
+        "feedback": "Excellent choice. Some of those craters are so cold and dark that water ice can survive there. Ice could one day give astronauts drinking water, air and even rocket fuel."
+      },
+      {
+        "id": "far-side",
+        "label": "The far side of the Moon, which always faces away from Earth",
+        "theme": "geology",
+        "feedback": "Bold idea. The far side looks very different from the side we see, with a thicker crust and far fewer dark lava plains. Driving there could help explain why the two halves are so different."
+      },
+      {
+        "id": "revisit",
+        "label": "Back to an Apollo site to inspect the old rover",
+        "theme": "tools",
+        "feedback": "Clever. A 50-year-old rover is a free experiment: checking its wheels, paint and wires would show engineers exactly what the Moon does to machines over time."
+      }
+    ],
+    "modelKind": "lrv",
+    "modelPath": null,
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/as15-86-11603/as15-86-11603~medium.jpg",
+      "alt": "Astronaut James Irwin with the Apollo 15 lunar rover.",
+      "credit": "NASA",
+      "nasaId": "as15-86-11603"
+    },
+    "restImage": {
+      "src": "https://images-assets.nasa.gov/image/as17-137-20979/as17-137-20979~medium.jpg",
+      "alt": "Close-up of the Apollo 17 lunar rover parked at Taurus–Littrow.",
+      "credit": "NASA",
+      "nasaId": "as17-137-20979"
+    },
+    "teacherPrompts": [
+      "The rover's batteries could not be recharged. How would that change the way you plan each drive?",
+      "Why would rubber tyres fail on the Moon? Think about temperature and air."
+    ],
+    "sources": [
+      {
+        "title": "Apollo 15 mission overview",
+        "url": "https://www.nasa.gov/mission/apollo-15/",
+        "publisher": "NASA"
+      },
+      {
+        "title": "Apollo 17 mission overview",
+        "url": "https://www.nasa.gov/mission/apollo-17/",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA Image and Video Library: S71-42955 (Genesis Rock)",
+        "url": "https://images.nasa.gov/details/S71-42955",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: simplified stand-in built by the team (no NASA model published). Background: \"Apollo Lunar Module\", NASA 3D Resources. Photos: NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": false
+  },
+  {
+    "id": "surveyor-3",
+    "name": "Surveyor 3",
+    "shortName": "Surveyor 3",
+    "location": "moon",
+    "site": "Ocean of Storms (Oceanus Procellarum)",
+    "coordinates": {
+      "lat": -3.01,
+      "lon": -23.42
+    },
+    "date": "1967-04-20",
+    "year": 1967,
+    "status": "silent",
+    "statusText": "Silent since 1967. Apollo 12 astronauts later visited and carried some of its parts home.",
+    "character": "A robot scout that checked the ground was safe, then got the rarest thing in space: a visit from people.",
+    "purpose": "Prove the lunar surface was firm enough to land on, before astronauts tried it.",
+    "mission": "Before people could land on the Moon, NASA needed to know: is the ground solid, or would a lander sink into dust? Surveyor 3 was a robot scout sent to find out. It landed in the Ocean of Storms in April 1967, bouncing before it settled, then used a mechanical scoop to dig into the soil and a camera to send back thousands of pictures.",
+    "discoveries": [
+      {
+        "title": "The ground can hold a lander",
+        "text": "Its scoop dug trenches and pressed on the soil. The surface was firm enough for the crewed landings that followed.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/as12-48-7121/as12-48-7121~medium.jpg",
+          "alt": "Surveyor 3 sitting in a shallow crater on the Moon, photographed by Apollo 12.",
+          "credit": "NASA",
+          "nasaId": "as12-48-7121"
+        }
+      },
+      {
+        "title": "Visitors from Earth",
+        "text": "In November 1969, Apollo 12 landed within walking distance. Pete Conrad and Alan Bean walked over and cut off parts to bring home.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/AS12-48-7133/AS12-48-7133~medium.jpg",
+          "alt": "Two spacecraft on the Moon: Surveyor 3 in front and the Apollo 12 lunar module behind.",
+          "credit": "NASA",
+          "nasaId": "AS12-48-7133"
+        }
+      },
+      {
+        "title": "What 2½ years on the Moon does",
+        "text": "Scientists studied the returned camera and parts to see how sunlight, dust and tiny impacts change materials over time."
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "camera",
+        "label": "TV camera",
+        "text": "Sent back thousands of pictures. Apollo 12 brought it home, and it is now displayed at the Smithsonian's National Air and Space Museum.",
+        "position": [
+          0.16,
+          0.78,
+          0.47
+        ]
+      },
+      {
+        "id": "scoop",
+        "label": "Surface sampler",
+        "text": "A small claw-scoop on an arm that dug trenches and tested how hard the soil was.",
+        "position": [
+          0.88,
+          -0.25,
+          0.6
+        ]
+      },
+      {
+        "id": "legs",
+        "label": "Landing legs",
+        "text": "Three shock-absorbing legs. Its engines did not shut off on time, so it bounced before it finally settled.",
+        "position": [
+          -1,
+          -0.55,
+          0.58
+        ]
+      }
+    ],
+    "confirmed": [
+      "The lunar surface at the landing site was firm enough to support a spacecraft.",
+      "Apollo 12 astronauts visited Surveyor 3 and brought its camera back to Earth."
+    ],
+    "inferred": [
+      "Earth bacteria were found inside the returned camera, but most scientists now think they got in after it came home, not that they survived on the Moon."
+    ],
+    "unknown": [
+      "Exactly how long tiny living things could survive on the Moon's surface, if at all."
+    ],
+    "question": "What could old hardware teach us about surviving in space?",
+    "nextMissionChoices": [
+      {
+        "id": "materials",
+        "label": "Collect pieces of old landers to test how materials age",
+        "theme": "tools",
+        "feedback": "This is real engineering science. Knowing how paint, metal and wires break down over decades helps us design habitats that keep astronauts safe for years."
+      },
+      {
+        "id": "microbes",
+        "label": "Test whether tiny living things can survive on the Moon",
+        "theme": "life",
+        "feedback": "Fascinating question. The Surveyor 3 bacteria story shows how hard it is to answer: you have to rule out contamination. A careful experiment could settle it."
+      },
+      {
+        "id": "dust",
+        "label": "Study how Moon dust sticks to and wears down machines",
+        "theme": "geology",
+        "feedback": "Great call. Moon dust is sharp and clingy. Apollo crews found it got into everything. Understanding it is one of the biggest challenges for living on the Moon."
+      }
+    ],
+    "modelKind": "surveyor",
+    "modelPath": null,
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/as12-48-7121/as12-48-7121~medium.jpg",
+      "alt": "Surveyor 3 in its crater on the Moon.",
+      "credit": "NASA",
+      "nasaId": "as12-48-7121"
+    },
+    "restImage": {
+      "src": "https://images-assets.nasa.gov/image/AS12-48-7133/AS12-48-7133~medium.jpg",
+      "alt": "Surveyor 3 with the Apollo 12 lunar module in the background.",
+      "credit": "NASA",
+      "nasaId": "AS12-48-7133"
+    },
+    "teacherPrompts": [
+      "Why send a robot before people? List the risks Surveyor helped reduce.",
+      "The bacteria story changed as scientists checked their work. What does that teach us about how science corrects itself?"
+    ],
+    "sources": [
+      {
+        "title": "Surveyor 3 mission page",
+        "url": "https://science.nasa.gov/mission/surveyor-3/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "Apollo 12 mission overview",
+        "url": "https://www.nasa.gov/mission/apollo-12/",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA Image and Video Library: AS12-48-7133",
+        "url": "https://images.nasa.gov/details/AS12-48-7133",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: simplified stand-in built by the team (no NASA model published). Background: \"Apollo Lunar Module\", NASA 3D Resources. Photos: NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": false
+  },
+  {
+    "id": "sojourner",
+    "name": "Sojourner Rover (Mars Pathfinder)",
+    "shortName": "Sojourner",
+    "location": "mars",
+    "site": "Ares Vallis",
+    "coordinates": {
+      "lat": 19.13,
+      "lon": -33.22
+    },
+    "date": "1997-07-04",
+    "year": 1997,
+    "status": "silent",
+    "statusText": "Silent since September 1997, when contact with the Pathfinder lander was lost.",
+    "character": "The first rover ever to roll across Mars: small, brave, and the great-grandparent of every Mars rover since.",
+    "purpose": "Prove that a small rover could drive and do science on Mars.",
+    "mission": "Nobody had ever driven a robot on another planet. Mars Pathfinder bounced onto Mars inside giant airbags on 4 July 1997 and unfolded like a flower. Out rolled Sojourner, a six-wheeled rover about the size of a microwave oven. It was a test: could a small, cheap rover work on Mars? Engineers planned for about a week. It kept going for nearly three months.",
+    "discoveries": [
+      {
+        "title": "Reading rocks by touch",
+        "text": "Its spectrometer pressed against rocks like 'Yogi' to find out what they were made of. Some held more silica than scientists expected.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA00629/PIA00629~small.jpg",
+          "alt": "Rocks and soil near the Pathfinder lander, including the large rock nicknamed Yogi.",
+          "credit": "NASA/JPL",
+          "nasaId": "PIA00629"
+        }
+      },
+      {
+        "title": "First tracks on Mars",
+        "text": "Wheel tracks in red dust proved a rover could drive and steer on another planet.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA00633/PIA00633~orig.jpg",
+          "alt": "Wheel tracks left by Sojourner in the Martian soil.",
+          "credit": "NASA/JPL",
+          "nasaId": "PIA00633"
+        }
+      },
+      {
+        "title": "A family resemblance",
+        "text": "Its six-wheel 'rocker-bogie' suspension became the design used by Spirit, Opportunity, Curiosity and Perseverance.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA04422/PIA04422~medium.jpg",
+          "alt": "A spare Sojourner rover posing next to the much bigger Spirit and Opportunity test rovers.",
+          "credit": "NASA/JPL",
+          "nasaId": "PIA04422"
+        }
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "solar",
+        "label": "Solar panel",
+        "text": "Covered the top of the rover and powered it during the Martian day.",
+        "position": [
+          0.1,
+          0.04,
+          0.1
+        ]
+      },
+      {
+        "id": "apxs",
+        "label": "Rock spectrometer (APXS)",
+        "text": "Mounted on the back. Pressed against rocks and soil to measure which chemical elements they contained.",
+        "position": [
+          -0.78,
+          -0.42,
+          0.05
+        ]
+      },
+      {
+        "id": "wheels",
+        "label": "Rocker-bogie wheels",
+        "text": "Six wheels on a clever linked suspension that could climb over rocks. Every NASA Mars rover since has used the same idea.",
+        "position": [
+          0.45,
+          -0.47,
+          0.6
+        ]
+      }
+    ],
+    "confirmed": [
+      "A rover can drive, steer and do science on Mars.",
+      "Sojourner worked for about 12 times longer than its planned mission."
+    ],
+    "inferred": [
+      "Ares Vallis was probably carved by huge floods of water long ago.",
+      "Engineers think Sojourner may have kept slowly circling the silent lander after contact was lost, waiting for orders."
+    ],
+    "unknown": [
+      "Exactly where Sojourner is parked today."
+    ],
+    "question": "What should a tiny rover explore that a big one can't?",
+    "nextMissionChoices": [
+      {
+        "id": "caves",
+        "label": "Inside caves and lava tubes",
+        "theme": "geology",
+        "feedback": "Brilliant. Caves are sheltered from radiation and wild temperature swings, which makes them interesting for geology, for possible life, and maybe one day for human shelters."
+      },
+      {
+        "id": "cracks",
+        "label": "Narrow cracks and canyon walls with layered rock",
+        "theme": "water",
+        "feedback": "Great instinct. Layers of rock are like pages in a history book, and many on Mars were laid down by water. A small rover could reach pages big rovers can't."
+      },
+      {
+        "id": "swarm",
+        "label": "Lots of tiny scouts helping one big rover",
+        "theme": "tools",
+        "feedback": "Very smart teamwork idea. NASA's Ingenuity helicopter already scouted ahead for the Perseverance rover. Small helpers can take risks the big rover shouldn't."
+      }
+    ],
+    "modelKind": "sojourner",
+    "modelPath": null,
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA00621/PIA00621~small.jpg",
+      "alt": "Sojourner rover sitting on the Pathfinder lander before driving off.",
+      "credit": "NASA/JPL",
+      "nasaId": "PIA00621"
+    },
+    "restImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA04318/PIA04318~thumb.jpg",
+      "alt": "Sojourner near a group of rocks called the Rock Garden.",
+      "credit": "NASA/JPL",
+      "nasaId": "PIA04318"
+    },
+    "teacherPrompts": [
+      "Sojourner was designed for about 7 days but lasted about 83. Why do engineers build in extra margin?",
+      "Compare Sojourner with Perseverance. What changed, and what stayed the same?"
+    ],
+    "sources": [
+      {
+        "title": "Mars Pathfinder mission page",
+        "url": "https://science.nasa.gov/mission/mars-pathfinder/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "NASA Image and Video Library: PIA00629",
+        "url": "https://images.nasa.gov/details/PIA00629",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: simplified stand-in built by the team. Photos: NASA/JPL via the NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": false
+  },
+  {
+    "id": "opportunity",
+    "name": "Opportunity Rover",
+    "shortName": "Opportunity",
+    "location": "mars",
+    "site": "Meridiani Planum",
+    "coordinates": {
+      "lat": -1.95,
+      "lon": -5.53
+    },
+    "date": "2004-01-25",
+    "year": 2004,
+    "status": "silent",
+    "statusText": "Silent since June 2018, when a planet-wide dust storm blocked the sunlight it needed. NASA ended the mission in February 2019.",
+    "character": "Built for 90 days, it kept exploring for about 15 years and ran farther than a marathon.",
+    "purpose": "Follow the water: find rocks that show whether liquid water ever existed on Mars.",
+    "mission": "In January 2004, twin rovers bounced onto opposite sides of Mars. Opportunity's job was to follow the water: look for rocks that showed whether liquid water had ever existed there. It was planned to work for 90 Mars days. Instead it explored for about 15 years and drove more than a marathon, 45 kilometres, before a planet-wide dust storm blocked out its solar power in 2018.",
+    "discoveries": [
+      {
+        "title": "'Blueberries'",
+        "text": "Tiny round pebbles rich in the mineral hematite. On Earth, grains like these usually form when water soaks through rock.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA05564/PIA05564~medium.jpg",
+          "alt": "Small round grey pebbles, nicknamed blueberries, scattered on Martian rock.",
+          "credit": "NASA/JPL-Caltech",
+          "nasaId": "PIA05564"
+        }
+      },
+      {
+        "title": "Ripples frozen in rock",
+        "text": "Wavy patterns in layered rock showed that water once flowed across the surface here.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA05482/PIA05482~orig.jpg",
+          "alt": "Close-up of layered rock with curved ripple patterns.",
+          "credit": "NASA/JPL-Caltech",
+          "nasaId": "PIA05482"
+        }
+      },
+      {
+        "title": "A bright mineral vein",
+        "text": "In 2011 it found 'Homestake', a vein of gypsum left by water flowing through a crack in the ground.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA15035/PIA15035~medium.jpg",
+          "alt": "Close-up of a bright, narrow mineral vein called Homestake crossing Martian ground.",
+          "credit": "NASA/JPL-Caltech",
+          "nasaId": "PIA15035"
+        }
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "pancam",
+        "label": "Panoramic camera",
+        "text": "Two 'eyes' on a mast about as tall as a person, taking colour and 3D pictures.",
+        "position": [
+          0,
+          0.8,
+          -0.3
+        ]
+      },
+      {
+        "id": "arm",
+        "label": "Robotic arm and rock grinder",
+        "text": "The arm held a microscope camera, spectrometers and a grinder that could scrape through a rock's dusty outer skin.",
+        "position": [
+          0.02,
+          -0.25,
+          1.15
+        ]
+      },
+      {
+        "id": "solar",
+        "label": "Solar panels",
+        "text": "Dust slowly covered them, but Martian winds sometimes blew them clean, giving the rover surprise boosts of power.",
+        "position": [
+          0.6,
+          0.1,
+          -0.75
+        ]
+      }
+    ],
+    "confirmed": [
+      "Liquid water existed at Opportunity's landing site long ago.",
+      "Opportunity drove about 45 km, a record for driving on another world at the time."
+    ],
+    "inferred": [
+      "Scientists think the early water at the landing site was very salty and acidic, while water later at Endeavour Crater was gentler."
+    ],
+    "unknown": [
+      "Whether life ever existed on Mars. Opportunity found strong signs of past water, but it never found evidence of life."
+    ],
+    "question": "Could ancient Mars have supported microbial life?",
+    "nextMissionChoices": [
+      {
+        "id": "lakebeds",
+        "label": "Drill into an ancient lakebed and look for chemical clues",
+        "theme": "life",
+        "feedback": "Spot on. That is exactly what the Perseverance rover is doing in Jezero Crater, an old lakebed. It is collecting rock samples that might one day be studied on Earth."
+      },
+      {
+        "id": "return",
+        "label": "Bring Martian rocks back to labs on Earth",
+        "theme": "life",
+        "feedback": "Great reasoning. Labs on Earth have tools far too big to fly to Mars. Bringing samples home could answer questions no rover can on its own."
+      },
+      {
+        "id": "ice",
+        "label": "Search for water ice hidden underground",
+        "theme": "water",
+        "feedback": "Smart. Mars has ice under its surface in many places. Ice could keep a record of the past, and it would be precious for future astronauts."
+      }
+    ],
+    "modelKind": "opportunity",
+    "modelPath": "models/opportunity.glb",
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA04928/PIA04928~medium.jpg",
+      "alt": "Artist's illustration of a Mars Exploration Rover on the surface of Mars.",
+      "credit": "NASA/JPL-Caltech",
+      "nasaId": "PIA04928"
+    },
+    "restImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA08812/PIA08812~small.jpg",
+      "alt": "Opportunity seen from orbit as a tiny speck on the rim of Victoria Crater.",
+      "credit": "NASA/JPL-Caltech/University of Arizona",
+      "nasaId": "PIA08812"
+    },
+    "teacherPrompts": [
+      "Why is 'found signs of water' different from 'found life'? Practise using careful science language.",
+      "Opportunity was planned for 90 sols but lasted about 15 years. What lucky and clever things helped?"
+    ],
+    "sources": [
+      {
+        "title": "Opportunity (MER-B) mission page",
+        "url": "https://science.nasa.gov/mission/mer-opportunity/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "Mars Exploration Rovers: Spirit and Opportunity",
+        "url": "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "NASA Image and Video Library: PIA15035 (Homestake)",
+        "url": "https://images.nasa.gov/details/PIA15035",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA 3D Resources",
+        "url": "https://science.nasa.gov/3d-resources/",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: \"Mars Exploration Rover - Opportunity (MER-B)\", NASA 3D Resources. Photos: NASA/JPL-Caltech via the NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": false
+  },
+  {
+    "id": "insight",
+    "name": "InSight Lander",
+    "shortName": "InSight",
+    "location": "mars",
+    "site": "Elysium Planitia",
+    "coordinates": {
+      "lat": 4.5,
+      "lon": 135.62
+    },
+    "date": "2018-11-26",
+    "year": 2018,
+    "status": "retired",
+    "statusText": "Retired in December 2022, after dust covered its solar panels and it could no longer make enough power.",
+    "character": "A lander that never moved an inch, because its job was to listen to the heartbeat of a planet.",
+    "purpose": "Study the inside of Mars: its crust, mantle and core.",
+    "mission": "Every lander before it looked at the surface. InSight was built to look inside. It landed on a flat, quiet plain called Elysium Planitia in November 2018 and stayed in one spot for four years, listening for marsquakes and measuring how Mars wobbles, to map the planet's crust, mantle and core, a bit like a doctor with a stethoscope.",
+    "discoveries": [
+      {
+        "title": "Mars shakes",
+        "text": "InSight detected more than 1,300 marsquakes, proving Mars is still geologically active.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA24761/PIA24761~small.jpg",
+          "alt": "A seismogram: a wiggly line showing a marsquake recorded in July 2019.",
+          "credit": "NASA/JPL-Caltech",
+          "nasaId": "PIA24761"
+        }
+      },
+      {
+        "title": "The biggest quake on another planet",
+        "text": "On 4 May 2022 it recorded a magnitude 5 marsquake, the largest quake ever detected beyond Earth.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA25044/PIA25044~medium.jpg",
+          "alt": "A colourful spectrogram showing the magnitude 5 marsquake of May 2022.",
+          "credit": "NASA/JPL-Caltech",
+          "nasaId": "PIA25044"
+        }
+      },
+      {
+        "title": "A liquid metal heart",
+        "text": "Quake waves revealed that Mars has a liquid metal core, about 1,830 km in radius. That's bigger than many scientists expected."
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "seis",
+        "label": "Seismometer (SEIS)",
+        "text": "So sensitive it could feel vibrations smaller than an atom. This NASA model shows it stowed on the deck; on Mars, the robotic arm lifted it onto the ground and covered it with a dome against wind and cold.",
+        "position": [
+          0,
+          0.36,
+          0.25
+        ]
+      },
+      {
+        "id": "mole",
+        "label": "Heat probe ('the mole')",
+        "text": "Designed to hammer itself 5 metres down to measure heat coming from inside Mars. Shown here stowed on the deck. On Mars, the soil clumped in a way nobody expected, and it barely got below the surface.",
+        "position": [
+          0.3,
+          0.22,
+          0.62
+        ]
+      },
+      {
+        "id": "solar",
+        "label": "Solar panels",
+        "text": "Two round panels, each about 2.2 metres across. Over four years, dust slowly covered them and the lander ran out of power.",
+        "position": [
+          -1.25,
+          0.14,
+          0
+        ]
+      }
+    ],
+    "confirmed": [
+      "Mars has marsquakes and is still geologically active.",
+      "Mars has a liquid metal core."
+    ],
+    "inferred": [
+      "Scientists think some marsquakes near a region called Cerberus Fossae may be linked to magma still moving underground.",
+      "One team studying InSight's data has suggested there may be liquid water deep in the crust, many kilometres down. Others are still checking."
+    ],
+    "unknown": [
+      "How much heat is flowing out from deep inside Mars, because the mole never reached its planned depth."
+    ],
+    "question": "What is happening deep inside Mars?",
+    "nextMissionChoices": [
+      {
+        "id": "network",
+        "label": "Place several seismometers far apart across Mars",
+        "theme": "geology",
+        "feedback": "Exactly what seismologists dream of. With only one station, InSight had to work hard to locate quakes. A network could pinpoint them and map the inside of Mars in 3D."
+      },
+      {
+        "id": "new-drill",
+        "label": "Try again to measure heat, with a different digging tool",
+        "theme": "tools",
+        "feedback": "Great persistence. The mole taught engineers a lot about Martian soil. Using those lessons to design a better tool is how failures turn into progress."
+      },
+      {
+        "id": "deep-water",
+        "label": "Search for liquid water deep underground",
+        "theme": "water",
+        "feedback": "Exciting idea. If water is hiding deep in the crust, it would be a big deal for understanding Mars, and maybe for the search for life. It would take new tools to check."
+      }
+    ],
+    "modelKind": "insight",
+    "modelPath": "models/insight.glb",
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA22743/PIA22743~medium.jpg",
+      "alt": "Artist's illustration of the InSight lander with its instruments placed on the ground.",
+      "credit": "NASA/JPL-Caltech",
+      "nasaId": "PIA22743"
+    },
+    "restImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA25287/PIA25287~medium.jpg",
+      "alt": "InSight's final selfie from April 2022, its solar panels coated in dust.",
+      "credit": "NASA/JPL-Caltech",
+      "nasaId": "PIA25287"
+    },
+    "teacherPrompts": [
+      "The mole did not reach its goal. What did the team still learn? Is that a failure?",
+      "Doctors and seismologists both 'listen' to see inside. Can you think of other ways we study things we cannot see?"
+    ],
+    "sources": [
+      {
+        "title": "InSight mission page",
+        "url": "https://science.nasa.gov/mission/insight/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "NASA Image and Video Library: PIA25044 (magnitude 5 marsquake)",
+        "url": "https://images.nasa.gov/details/PIA25044",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA Image and Video Library: PIA25287 (final selfie)",
+        "url": "https://images.nasa.gov/details/PIA25287",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA 3D Resources",
+        "url": "https://science.nasa.gov/3d-resources/",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: \"InSight Cruise Lander (panels deployed)\", NASA 3D Resources. Photos: NASA/JPL-Caltech via the NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": false
+  },
+  {
+    "id": "voyager-1",
+    "name": "Voyager 1",
+    "shortName": "Voyager 1",
+    "location": "interstellar",
+    "site": "Interstellar space, beyond the Sun's bubble",
+    "coordinates": null,
+    "date": "1977-09-05",
+    "year": 1977,
+    "status": "still-working",
+    "statusText": "Still sending messages home from interstellar space. Not on the Moon or Mars, but still out there.",
+    "character": "The farthest human-made object, carrying a golden record in case anyone ever finds it.",
+    "purpose": "Fly past Jupiter and Saturn, then keep going to the edge of the Sun's influence and beyond.",
+    "mission": "This epilogue leaves the Moon and Mars behind. Voyager 1 launched on 5 September 1977 to fly past Jupiter and Saturn. Then it just kept going. In August 2012 it became the first spacecraft to enter interstellar space, the region between the stars. It carries a golden record of sounds and pictures from Earth, a message for anyone who might find it.",
+    "discoveries": [
+      {
+        "title": "The Pale Blue Dot",
+        "text": "In 1990, looking back from about 6 billion km away, it photographed Earth as a tiny speck of light.",
+        "image": {
+          "src": "https://images-assets.nasa.gov/image/PIA00452/PIA00452~orig.jpg",
+          "alt": "A streak of scattered sunlight with a tiny pale blue dot: Earth seen from Voyager 1.",
+          "credit": "NASA/JPL-Caltech",
+          "nasaId": "PIA00452"
+        }
+      },
+      {
+        "title": "Volcanoes on another world",
+        "text": "During its 1979 flyby of Jupiter, Voyager 1 revealed active volcanoes erupting on the moon Io."
+      },
+      {
+        "title": "Crossing into interstellar space",
+        "text": "In 2012 its instruments showed it had left the bubble of particles blown out by the Sun."
+      }
+    ],
+    "hotspots": [
+      {
+        "id": "dish",
+        "label": "High-gain antenna",
+        "text": "A 3.7-metre dish that still points home and sends faint signals across billions of kilometres.",
+        "position": [
+          -0.19,
+          0.52,
+          -0.5
+        ]
+      },
+      {
+        "id": "record",
+        "label": "Golden Record",
+        "text": "A gold-plated record with greetings, music and sounds of Earth, with instructions for how to play it.",
+        "position": [
+          0.44,
+          0.02,
+          0.5
+        ]
+      },
+      {
+        "id": "rtg",
+        "label": "Nuclear power source",
+        "text": "Too far from the Sun for solar panels, it runs on heat from decaying plutonium. The power slowly fades each year.",
+        "position": [
+          0.13,
+          -0.06,
+          2.53
+        ]
+      }
+    ],
+    "confirmed": [
+      "Voyager 1 entered interstellar space in 2012.",
+      "It is still in contact with Earth."
+    ],
+    "inferred": [
+      "Engineers expect its power will eventually become too low to run any instruments."
+    ],
+    "unknown": [
+      "What exactly lies far out in interstellar space, beyond where any probe has measured."
+    ],
+    "question": "What should a future probe measure out there?",
+    "nextMissionChoices": [
+      {
+        "id": "particles",
+        "label": "Measure the gas and dust between the stars",
+        "theme": "deep-space",
+        "feedback": "Great choice. That material is the raw stuff stars and planets are made from. Voyager can only measure a little of it with its 1970s instruments."
+      },
+      {
+        "id": "look-back",
+        "label": "Look back to see the shape of the Sun's bubble",
+        "theme": "deep-space",
+        "feedback": "Clever. We live inside the Sun's bubble, so it's hard to see its shape from here. A probe outside it could take the first 'family portrait' of our whole neighbourhood."
+      },
+      {
+        "id": "message",
+        "label": "Carry a new message for anyone who might find it",
+        "theme": "tools",
+        "feedback": "Lovely idea. Deciding what to say about Earth is a science question and a human one. What would you put on a new golden record?"
+      }
+    ],
+    "modelKind": "voyager",
+    "modelPath": "models/voyager.glb",
+    "fallbackImage": {
+      "src": "https://images-assets.nasa.gov/image/PIA04495/PIA04495~medium.jpg",
+      "alt": "Artist's illustration of the Voyager spacecraft in space.",
+      "credit": "NASA/JPL-Caltech",
+      "nasaId": "PIA04495"
+    },
+    "restImage": null,
+    "teacherPrompts": [
+      "Voyager's signal takes nearly a day to reach Earth. What problems does that delay cause?",
+      "If you could add one sound to the Golden Record, what would it be and why?"
+    ],
+    "sources": [
+      {
+        "title": "Voyager 1 mission page",
+        "url": "https://science.nasa.gov/mission/voyager/voyager-1/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "Voyager mission overview",
+        "url": "https://science.nasa.gov/mission/voyager/",
+        "publisher": "NASA Science"
+      },
+      {
+        "title": "NASA Image and Video Library: PIA00452 (Pale Blue Dot)",
+        "url": "https://images.nasa.gov/details/PIA00452",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA 3D Resources",
+        "url": "https://science.nasa.gov/3d-resources/",
+        "publisher": "NASA"
+      }
+    ],
+    "credits": "3D model: \"Voyager Probe (B)\", NASA 3D Resources. Images: NASA/JPL-Caltech via the NASA Image and Video Library.",
+    "verifiedBy": {
+      "writer": "AI draft (Claude), team to review",
+      "checker": "PENDING",
+      "date": null
+    },
+    "epilogue": true
+  }
+]

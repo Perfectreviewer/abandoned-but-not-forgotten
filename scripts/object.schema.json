@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Abandoned but Not Forgotten: object records",
+  "type": "array",
+  "minItems": 4,
+  "items": { "$ref": "#/definitions/object" },
+  "definitions": {
+    "text": { "type": "string", "minLength": 3 },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt", "credit", "nasaId"],
+      "properties": {
+        "src": { "type": "string", "format": "uri", "pattern": "^https://images-assets\\.nasa\\.gov/" },
+        "alt": { "$ref": "#/definitions/text" },
+        "credit": { "$ref": "#/definitions/text" },
+        "nasaId": { "type": "string", "minLength": 1 }
+      }
+    },
+    "object": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "shortName", "location", "site", "coordinates", "date", "year", "status", "statusText", "character", "purpose", "mission", "discoveries", "hotspots", "confirmed", "inferred", "unknown", "question", "nextMissionChoices", "modelKind", "modelPath", "fallbackImage", "restImage", "teacherPrompts", "sources", "credits", "verifiedBy", "epilogue"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "$ref": "#/definitions/text" },
+        "shortName": { "$ref": "#/definitions/text" },
+        "location": { "enum": ["moon", "mars", "interstellar"] },
+        "site": { "$ref": "#/definitions/text" },
+        "coordinates": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["lat", "lon"],
+              "properties": {
+                "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+                "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+              }
+            }
+          ]
+        },
+        "date": { "type": "string", "format": "date" },
+        "year": { "type": "integer", "minimum": 1957, "maximum": 2030 },
+        "status": { "enum": ["silent", "retired", "still-working"] },
+        "statusText": { "$ref": "#/definitions/text" },
+        "character": { "$ref": "#/definitions/text" },
+        "purpose": { "$ref": "#/definitions/text" },
+        "mission": { "$ref": "#/definitions/text" },
+        "discoveries": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "text"],
+            "properties": {
+              "title": { "$ref": "#/definitions/text" },
+              "text": { "$ref": "#/definitions/text" },
+              "image": { "$ref": "#/definitions/image" }
+            }
+          }
+        },
+        "hotspots": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "label", "text", "position"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "$ref": "#/definitions/text" },
+              "text": { "$ref": "#/definitions/text" },
+              "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 }
+            }
+          }
+        },
+        "confirmed": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/text" } },
+        "inferred": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/text" } },
+        "unknown": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/text" } },
+        "question": { "type": "string", "pattern": "\\?$" },
+        "nextMissionChoices": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "label", "theme", "feedback"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "$ref": "#/definitions/text" },
+              "theme": { "enum": ["water", "life", "geology", "tools", "deep-space"] },
+              "feedback": { "type": "string", "minLength": 40 }
+            }
+          }
+        },
+        "modelKind": { "enum": ["retroreflector", "lrv", "surveyor", "sojourner", "opportunity", "insight", "voyager"] },
+        "modelPath": { "type": ["string", "null"], "pattern": "\\.(glb|gltf)$" },
+        "fallbackImage": { "$ref": "#/definitions/image" },
+        "restImage": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/image" }] },
+        "teacherPrompts": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/text" } },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["title", "url", "publisher"],
+            "properties": {
+              "title": { "$ref": "#/definitions/text" },
+              "url": { "type": "string", "format": "uri", "pattern": "^https://([a-z0-9-]+\\.)*nasa\\.gov/" },
+              "publisher": { "$ref": "#/definitions/text" }
+            }
+          }
+        },
+        "credits": { "$ref": "#/definitions/text" },
+        "verifiedBy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["writer", "checker", "date"],
+          "properties": {
+            "writer": { "$ref": "#/definitions/text" },
+            "checker": { "type": "string", "minLength": 2 },
+            "date": { "type": ["string", "null"], "format": "date" }
+          }
+        },
+        "epilogue": { "type": "boolean" }
+      }
+    }
+  }
+}
