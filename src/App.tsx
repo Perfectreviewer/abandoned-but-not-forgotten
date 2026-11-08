@@ -14,7 +14,6 @@ import Constellation from './pages/Constellation';
 import Teacher from './pages/Teacher';
 import About from './pages/About';
 
-
 function titleFor(r: Route) {
   const base = 'Abandoned but Not Forgotten';
   switch (r.page) {
