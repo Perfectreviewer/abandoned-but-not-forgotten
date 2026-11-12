@@ -1,7 +1,8 @@
 import { MotionConfig } from 'framer-motion';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { Starfield } from './components/Starfield';
-import { MagneticLink, PageCurtain, Preloader } from './components/fx';
+import { MagneticLink, PageCurtain } from './components/fx';
+import { Preloader } from './components/Preloader';
 import { RocketCursor } from './components/RocketCursor';
 import { useRoute, byId, useReducedMotion, useAnswers, type Route } from './lib/util';
 import { gsap, ScrollTrigger } from './lib/gsap';
@@ -106,6 +107,11 @@ export default function App() {
       <a className="skip-link" href="#main" onClick={(e) => { e.preventDefault(); document.getElementById('main')?.focus(); }}>
         Skip to content
       </a>
+      <div className="nebula" aria-hidden="true">
+        <i className="n1" />
+        <i className="n2" />
+        <i className="n3" />
+      </div>
       <Starfield still={reduced} />
       <div className="grain" aria-hidden="true" />
       <Preloader />

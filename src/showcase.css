@@ -1,0 +1,156 @@
+/* =====================================================================
+   SHOWCASE LAYER: the 3D hangar, deep-space backdrop, metallic type
+   (loaded after premium.css)
+   ===================================================================== */
+
+/* ---------- nebula glows drifting behind every page ---------- */
+.nebula { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; background: var(--bg); }
+.nebula i { position: absolute; border-radius: 50%; will-change: transform; }
+.nebula .n1 { width: 70vw; height: 70vw; left: -20vw; top: -25vw; background: radial-gradient(circle, rgba(64, 54, 170, 0.34), transparent 62%); animation: neb1 38s ease-in-out infinite alternate; }
+.nebula .n2 { width: 60vw; height: 60vw; right: -22vw; top: 18vh; background: radial-gradient(circle, rgba(226, 119, 74, 0.16), transparent 60%); animation: neb2 46s ease-in-out infinite alternate; }
+.nebula .n3 { width: 80vw; height: 80vw; left: 12vw; bottom: -52vw; background: radial-gradient(circle, rgba(40, 110, 190, 0.2), transparent 60%); animation: neb3 54s ease-in-out infinite alternate; }
+@keyframes neb1 { to { transform: translate3d(9vw, 7vh, 0) scale(1.15); } }
+@keyframes neb2 { to { transform: translate3d(-10vw, -8vh, 0) scale(1.2); } }
+@keyframes neb3 { to { transform: translate3d(-7vw, -9vh, 0) scale(0.9); } }
+@media (prefers-reduced-motion: reduce) { .nebula i { animation: none; } }
+body { background: transparent; }
+
+/* ---------- metallic gradient headlines ---------- */
+.flight-step h1, .story-head h1, .page-head h1, .world-head h1, .hangar-name, .footer-big, .next-title {
+  background: linear-gradient(180deg, #ffffff 0%, #f1ede4 38%, #a9a59b 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+}
+/* split headings animate inner spans, so the gradient has to sit on those */
+h1.splt { background: none; color: var(--text); -webkit-text-fill-color: var(--text); }
+h1.splt .sw > span {
+  background: linear-gradient(180deg, #ffffff 0%, #f1ede4 38%, #a9a59b 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.accent, .flight-step h1 .accent, .footer-big .accent {
+  background: linear-gradient(100deg, #ffe7b0 0%, #ffcf7a 35%, #ff9d5c 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* ---------- the hangar ---------- */
+.hangar-section { padding-top: 90px; }
+.hangar {
+  --hang: #ffcf7a;
+  position: relative; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 0;
+  margin-top: 28px; border-radius: 30px; overflow: hidden; isolation: isolate;
+  border: 1px solid var(--glass-line);
+  background:
+    radial-gradient(90% 120% at 30% 100%, rgba(255, 207, 122, 0.1), transparent 55%),
+    linear-gradient(180deg, rgba(16, 18, 34, 0.9), rgba(6, 7, 14, 0.96));
+  box-shadow: 0 60px 120px -50px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.hangar-mars { --hang: #ff9b63; background: radial-gradient(90% 120% at 30% 100%, rgba(255, 130, 70, 0.14), transparent 55%), linear-gradient(180deg, rgba(26, 16, 16, 0.9), rgba(8, 6, 8, 0.96)); }
+.hangar-stage { position: relative; min-height: min(72vh, 620px); cursor: grab; }
+.hangar-stage:active { cursor: grabbing; }
+.hangar-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+.hangar-index {
+  position: absolute; left: 26px; top: 10px; z-index: 1; pointer-events: none;
+  font: 700 clamp(5rem, 13vw, 11rem)/1 var(--font-head); letter-spacing: -0.06em;
+  color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+}
+.hangar-hint { position: absolute; left: 0; right: 0; bottom: 16px; margin: 0; text-align: center; font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); pointer-events: none; }
+
+.hangar-info { position: relative; padding: clamp(24px, 3.4vw, 46px); display: flex; flex-direction: column; justify-content: center; gap: 14px; border-left: 1px solid var(--glass-line); background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent); }
+.hangar-count { margin: 0; display: flex; align-items: center; gap: 12px; font: 600 0.8rem var(--font-head); letter-spacing: 0.16em; color: var(--muted); }
+.hangar-count > span:first-child { color: var(--hang); }
+.hangar-place { margin-left: auto; padding: 4px 10px; border: 1px solid var(--glass-line); border-radius: 999px; font-size: 0.68rem; text-transform: uppercase; }
+.hangar-name { margin: 0; font: 700 clamp(2.2rem, 4.6vw, 3.8rem)/0.98 var(--font-head); letter-spacing: -0.045em; }
+.hangar-line { margin: 0; color: #cfd0d8; font-size: 1.02rem; }
+.hangar-q { margin: 0; padding-left: 14px; border-left: 2px solid var(--hang); color: var(--hang); font-style: italic; }
+.hangar-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+.hangar-done { font-size: 0.82rem; color: var(--confirmed); }
+.hangar-nav { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+.hangar-arrow {
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--glass-line); background: rgba(255, 255, 255, 0.04); color: var(--text); font-size: 1.1rem;
+  transition: background 0.3s, color 0.3s, transform 0.4s var(--ease-out), border-color 0.3s;
+}
+.hangar-arrow:hover { background: var(--hang); color: #17130a; border-color: var(--hang); transform: scale(1.08); }
+.hangar-progress { flex: 1; height: 2px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden; }
+.hangar-progress span { display: block; height: 100%; background: var(--hang); transform: scaleX(0); transform-origin: left; }
+
+.hangar-thumbs { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--glass-line); }
+.hangar-thumb {
+  position: relative; display: flex; align-items: flex-end; min-height: 76px; padding: 10px 12px; border: 0; border-right: 1px solid var(--glass-line);
+  background: #000; color: #fff; text-align: left; overflow: hidden; font: 600 0.74rem var(--font-body);
+}
+.hangar-thumb:last-child { border-right: 0; }
+.hangar-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.32; filter: grayscale(0.6); transition: opacity 0.4s, transform 0.9s var(--ease-out), filter 0.4s; }
+.hangar-thumb span { position: relative; z-index: 1; text-shadow: 0 1px 6px #000; }
+.hangar-thumb::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--hang); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease-out); }
+.hangar-thumb:hover img { opacity: 0.6; transform: scale(1.08); }
+.hangar-thumb.is-on img { opacity: 0.85; filter: none; }
+.hangar-thumb.is-on::after { transform: scaleX(1); }
+
+@media (max-width: 900px) {
+  .hangar { grid-template-columns: 1fr; }
+  .hangar-stage { min-height: 46vh; }
+  .hangar-info { border-left: 0; border-top: 1px solid var(--glass-line); }
+  .hangar-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hangar-thumb { border-bottom: 1px solid var(--glass-line); min-height: 60px; }
+}
+
+/* ---------- cards: content lifts off the surface when tilted ---------- */
+.object-card .object-card-img { transform: translateZ(18px); }
+.object-card .object-card-body strong { transform: translateZ(34px); display: block; }
+.object-card .object-card-q, .object-card .object-card-go { transform: translateZ(24px); }
+.object-card .object-card-meta { transform: translateZ(28px); }
+.evidence-card h3 { transform: translateZ(26px); }
+.evidence-card .evidence-n { transform: translateZ(40px); }
+.tl-card .tl-body strong { transform: translateZ(22px); }
+
+/* ---------- glass panels with a light edge ---------- */
+.panel, .k, .hiw-card, .stat, .source-panel, .hotspot-detail, .next-mission, .feedback {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 30px 60px -40px rgba(0, 0, 0, 0.8);
+}
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--accent); opacity: 0.8; }
+.chapter-nav .eyebrow::before, .fact-panel .eyebrow::before, .hotspots .eyebrow::before { display: none; }
+
+/* hero: animated scroll cue */
+.flight .scroll-cue { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.flight .scroll-cue::after { content: ''; width: 1px; height: 34px; background: linear-gradient(var(--accent), transparent); animation: cue 1.8s ease-in-out infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); opacity: 0; } 40% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1) translateY(16px); opacity: 0; } }
+
+/* ---------- intro loader: 3D landing scene with the title and counter over it ---------- */
+.preloader { display: block; }
+.pre-scene { position: absolute; inset: 0; }
+.pre-scene canvas { display: block; }
+.preloader::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(2, 2, 5, 0.9) 0%, rgba(2, 2, 5, 0.25) 38%, transparent 60%); }
+.pre-inner { position: absolute; z-index: 2; left: 0; right: 0; bottom: 7vh; margin: 0 auto; width: min(620px, 86vw); }
+.pre-title { font-size: clamp(1.5rem, 4.4vw, 3rem); margin-bottom: 18px; }
+.pre-num { display: flex; justify-content: space-between; align-items: baseline; text-align: left; }
+.pre-status { letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.72rem; color: var(--accent); }
+
+/* ---------- small landing animation while a 3D scene loads ---------- */
+.scene-loading { position: absolute; inset: 0; }
+.scene-loader { position: absolute; inset: 0; z-index: 2; display: grid; place-content: center; justify-items: center; gap: 6px; background: radial-gradient(circle at 50% 45%, rgba(5, 6, 13, 0.35), rgba(5, 6, 13, 0.8)); }
+.sl-lander { display: block; animation: sl-descend 1.9s cubic-bezier(0.3, 0, 0.2, 1) infinite; filter: drop-shadow(0 0 10px rgba(255, 154, 60, 0.45)); }
+.sl-flame { transform-box: fill-box; transform-origin: 50% 0; animation: sl-flame 0.1s steps(2) infinite alternate; }
+.sl-ground { width: 96px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); animation: sl-ground 1.9s ease-in-out infinite; }
+.sl-label { margin-top: 8px; font: 600 0.7rem var(--font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+@keyframes sl-descend { 0% { transform: translateY(-34px); opacity: 0; } 18% { opacity: 1; } 70% { transform: translateY(0); } 78% { transform: translateY(3px); } 88%, 100% { transform: translateY(0); opacity: 1; } }
+@keyframes sl-flame { from { transform: scaleY(0.75); opacity: 0.8; } to { transform: scaleY(1.1); opacity: 1; } }
+@keyframes sl-ground { 0%, 60% { transform: scaleX(0.5); opacity: 0.4; } 76% { transform: scaleX(1.5); opacity: 1; } 100% { transform: scaleX(0.9); opacity: 0.5; } }
+@media (prefers-reduced-motion: reduce) { .sl-lander, .sl-flame, .sl-ground { animation: none; } }
+.viewer-loading { display: block; }
+
+/* ---------- click-to-dive: veil and heads-up label ---------- */
+.globe-wrap { position: relative; border-radius: 24px; overflow: hidden; }
+.dive-veil { position: absolute; inset: 0; z-index: 4; pointer-events: none; visibility: hidden; opacity: 0; background: radial-gradient(circle at 50% 50%, rgba(255, 244, 222, 0.95), rgba(255, 207, 122, 0.55) 35%, rgba(5, 6, 13, 0.96) 75%); }
+.flight-stage > .dive-veil { z-index: 3; }
+.dive-hud {
+  position: absolute; z-index: 5; left: 50%; bottom: 18px; transform: translateX(-50%); pointer-events: none; white-space: nowrap;
+  display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 999px;
+  font: 600 0.72rem var(--font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text);
+  background: rgba(5, 6, 13, 0.7); border: 1px solid rgba(255, 207, 122, 0.45); backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity 0.4s;
+}
+.is-diving .dive-hud { opacity: 1; }
+.dive-hud-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: live 1.2s infinite; }
+.is-diving .globe-stage { cursor: progress; }
+
+@media print { .nebula { display: none !important; } body { background: #fff; } }

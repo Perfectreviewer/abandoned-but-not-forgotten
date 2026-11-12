@@ -1,8 +1,10 @@
 import { SplitReveal } from '../components/fx';
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { gsap } from '../lib/gsap';
+import { scrollToTarget } from '../lib/motion';
 import { ObjectCard, Planet, Reveal } from '../components/bits';
 import { GlobeCanvas } from '../components/Scenes';
-import { CORE, useReducedMotion } from '../lib/util';
+import { CORE, hasWebGL, useReducedMotion } from '../lib/util';
 
 const COPY = {
   moon: {
@@ -49,6 +51,40 @@ export default function World({ place }: { place: 'moon' | 'mars' }) {
   const reduced = useReducedMotion();
   const c = COPY[place];
   const sites = items.filter((o) => o.coordinates).map((o) => ({ id: o.id, label: o.shortName, lat: o.coordinates!.lat, lon: o.coordinates!.lon }));
+  const [diving, setDiving] = useState<string | null>(null);
+  const dive = useMemo(() => ({ value: 0 }), []);
+  const figure = useRef<HTMLElement>(null);
+  const veil = useRef<HTMLDivElement>(null);
+
+  useEffect(
+    () => () => {
+      gsap.killTweensOf(dive);
+      dive.value = 0;
+    },
+    [dive, place],
+  );
+
+  /** Picking a site: the globe turns to it, the camera dives to the surface, then the story opens. */
+  const pick = (id: string) => {
+    const href = `#/object/${id}`;
+    if (diving) return;
+    if (reduced || !hasWebGL() || !sites.some((s) => s.id === id)) {
+      window.location.hash = href;
+      return;
+    }
+    setDiving(id);
+    if (figure.current) scrollToTarget(figure.current, { offset: -90 });
+    gsap
+      .timeline({
+        onComplete: () => {
+          window.location.hash = href;
+        },
+      })
+      .to(dive, { value: 1, duration: 2.1, ease: 'power2.inOut' }, 0.85) // after the globe has mostly turned
+      .fromTo(veil.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: 'power2.in' }, 2.45);
+  };
+  const active = diving ?? hover;
+  const divingName = diving ? items.find((o) => o.id === diving)?.shortName : '';
 
   return (
     <div className="page">
@@ -62,18 +98,31 @@ export default function World({ place }: { place: 'moon' | 'mars' }) {
       </header>
 
       <div className="world-layout">
-        <figure className="globe-figure">
-          <GlobeCanvas
-            className="globe-stage"
-            place={place}
-            sites={sites}
-            active={hover}
-            onPick={(id) => (window.location.hash = `#/object/${id}`)}
-            reducedMotion={reduced}
-            fallback={<FlatMap place={place} items={items} hover={hover} setHover={setHover} />}
-          />
+        <figure className={`globe-figure${diving ? ' is-diving' : ''}`} ref={figure}>
+          <div className="globe-wrap">
+            <GlobeCanvas
+              className="globe-stage"
+              place={place}
+              sites={sites}
+              active={active}
+              onPick={pick}
+              dive={dive}
+              diving={!!diving}
+              reducedMotion={reduced}
+              fallback={<FlatMap place={place} items={items} hover={hover} setHover={setHover} />}
+            />
+            <div className="dive-hud" aria-live="polite">
+              {diving && (
+                <>
+                  <span className="dive-hud-dot" aria-hidden="true" />
+                  Descending to {divingName}
+                </>
+              )}
+            </div>
+            <div ref={veil} className="dive-veil" aria-hidden="true" />
+          </div>
           <figcaption className="muted small">
-            Real NASA map of {place === 'moon' ? 'the Moon' : 'Mars'}. Drag to spin. Gold dots mark each landing site at its true latitude and longitude.
+            Real NASA map of {place === 'moon' ? 'the Moon' : 'Mars'}. Drag to spin, or click a gold dot to fly down to it. Dots mark each landing site at its true latitude and longitude.
             {place === 'moon' && ' The Lunar Rover dot marks Apollo 15; the Apollo 16 and 17 rovers rest at their own sites.'}
           </figcaption>
         </figure>
@@ -81,7 +130,18 @@ export default function World({ place }: { place: 'moon' | 'mars' }) {
         <div className="world-list">
           {items.map((o, i) => (
             <Reveal key={o.id} delay={i * 0.06}>
-              <div onMouseEnter={() => setHover(o.id)} onMouseLeave={() => setHover(null)} onFocus={() => setHover(o.id)} onBlur={() => setHover(null)}>
+              <div
+                onMouseEnter={() => setHover(o.id)}
+                onMouseLeave={() => setHover(null)}
+                onFocus={() => setHover(o.id)}
+                onBlur={() => setHover(null)}
+                onClickCapture={(e) => {
+                  // plain clicks fly down to the site first; modified clicks (new tab) behave normally
+                  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                  e.preventDefault();
+                  pick(o.id);
+                }}
+              >
                 <ObjectCard o={o} />
               </div>
             </Reveal>

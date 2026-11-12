@@ -76,7 +76,9 @@
     ],
     "confirmed": [
       "The reflector still works more than 50 years after it was placed.",
-      "The Moon is moving away from Earth by about 3.8 cm each year."
+      "The Moon is moving away from Earth by about 3.8 cm each year.",
+      "Lick Observatory in California caught the first laser echoes from it on 1 August 1969, less than two weeks after it was set up.",
+      "Today, ranging to the Apollo reflectors is accurate to about 3 centimetres, across a distance of about 384,000 km."
     ],
     "inferred": [
       "The Moon probably has a liquid layer around its core, based on how it wobbles as it spins.",
@@ -129,6 +131,16 @@
         "title": "NASA Image and Video Library: AS11-40-5948",
         "url": "https://images.nasa.gov/details/as11-40-5948",
         "publisher": "NASA"
+      },
+      {
+        "title": "Apollo 11 Preliminary Science Report: Laser Ranging Retroreflector",
+        "url": "https://ilrs.gsfc.nasa.gov/docs/2026/lunar/Apollo11_Preliminary_Sci_Report_LLR.pdf",
+        "publisher": "NASA ILRS"
+      },
+      {
+        "title": "Accuracy of Eclipse Predictions (Apollo laser ranging)",
+        "url": "https://eclipse.gsfc.nasa.gov/SEhelp/ApolloLaser.html",
+        "publisher": "NASA Goddard"
       }
     ],
     "credits": "3D model: simplified stand-in built by the team (no NASA model published). Background: \"Apollo Lunar Module\", NASA 3D Resources. Photos: NASA Image and Video Library.",
@@ -222,7 +234,10 @@
     ],
     "confirmed": [
       "Rovers let Apollo 15, 16 and 17 crews explore far more ground than earlier crews on foot.",
-      "Samples they collected include the ~4-billion-year-old Genesis Rock and volcanic orange glass beads."
+      "Samples they collected include the ~4-billion-year-old Genesis Rock and volcanic orange glass beads.",
+      "On Apollo 17 the crew drove about 36 km in total, and Gene Cernan reached about 18 km/h, the speed record on the Moon.",
+      "Four rovers were built: one each for Apollo 15, 16 and 17, and one used for spare parts. The final cost was $38 million.",
+      "When a fender broke on Apollo 17, the crew built a new one from four spare maps, duct tape and clamps, following a fix worked out in Houston."
     ],
     "inferred": [
       "Scientists think the Moon's oldest pale crust formed when light minerals floated to the top of a huge ocean of molten rock."
@@ -284,6 +299,21 @@
         "title": "NASA Image and Video Library: S71-42955 (Genesis Rock)",
         "url": "https://images.nasa.gov/details/S71-42955",
         "publisher": "NASA"
+      },
+      {
+        "title": "The Apollo Lunar Roving Vehicle",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/apollo_lrv.html",
+        "publisher": "NASA NSSDCA"
+      },
+      {
+        "title": "Apollo 17 (Marshall Space Flight Center history)",
+        "url": "https://history.msfc.nasa.gov/saturn_apollo/apollo17_article.html",
+        "publisher": "NASA Marshall"
+      },
+      {
+        "title": "Duct Tape Saves the Day!",
+        "url": "https://www.nasa.gov/image-article/duct-tape-saves-day/",
+        "publisher": "NASA"
       }
     ],
     "credits": "3D model: simplified stand-in built by the team (no NASA model published). Background: \"Apollo Lunar Module\", NASA 3D Resources. Photos: NASA Image and Video Library.",
@@ -324,7 +354,7 @@
       },
       {
         "title": "Visitors from Earth",
-        "text": "In November 1969, Apollo 12 landed within walking distance. Pete Conrad and Alan Bean walked over and cut off parts to bring home.",
+        "text": "In November 1969, Apollo 12 landed about 180 metres away, after Surveyor 3 had waited 2½ years. Pete Conrad and Alan Bean walked over and cut off parts to bring home.",
         "image": {
           "src": "https://images-assets.nasa.gov/image/AS12-48-7133/AS12-48-7133~medium.jpg",
           "alt": "Two spacecraft on the Moon: Surveyor 3 in front and the Apollo 12 lunar module behind.",
@@ -371,10 +401,11 @@
     ],
     "confirmed": [
       "The lunar surface at the landing site was firm enough to support a spacecraft.",
-      "Apollo 12 astronauts visited Surveyor 3 and brought its camera back to Earth."
+      "Apollo 12 astronauts visited Surveyor 3 and brought its camera back to Earth.",
+      "Scientists found a bacterium, Streptococcus mitis, in foam inside the camera Apollo 12 brought home."
     ],
     "inferred": [
-      "Earth bacteria were found inside the returned camera, but most scientists now think they got in after it came home, not that they survived on the Moon."
+      "Most scientists now think the Streptococcus mitis bacteria got into the camera on Earth, during or after its return, not that they survived on the Moon."
     ],
     "unknown": [
       "Exactly how long tiny living things could survive on the Moon's surface, if at all."
@@ -433,6 +464,16 @@
         "title": "NASA Image and Video Library: AS12-48-7133",
         "url": "https://images.nasa.gov/details/AS12-48-7133",
         "publisher": "NASA"
+      },
+      {
+        "title": "JPL Universe, July 2009 (Surveyor 3 and Apollo 12)",
+        "url": "https://www.jpl.nasa.gov/universe/archive/un0907.pdf",
+        "publisher": "NASA JPL"
+      },
+      {
+        "title": "Aerospace Medicine and Biology bibliography (Streptococcus mitis from the Surveyor 3 camera)",
+        "url": "https://ntrs.nasa.gov/api/citations/19720011420/downloads/19720011420.pdf",
+        "publisher": "NASA NTRS"
       }
     ],
     "credits": "3D model: simplified stand-in built by the team (no NASA model published). Background: \"Apollo Lunar Module\", NASA 3D Resources. Photos: NASA Image and Video Library.",
@@ -526,7 +567,9 @@
     ],
     "confirmed": [
       "A rover can drive, steer and do science on Mars.",
-      "Sojourner worked for about 12 times longer than its planned mission."
+      "Sojourner worked for about 12 times longer than its planned mission.",
+      "The rover weighed only about 10.6 kg.",
+      "Wrapped in airbags, Pathfinder bounced about 15 times, as high as 15 metres, before it came to rest."
     ],
     "inferred": [
       "Ares Vallis was probably carved by huge floods of water long ago.",
@@ -677,7 +720,8 @@
     ],
     "confirmed": [
       "Liquid water existed at Opportunity's landing site long ago.",
-      "Opportunity drove about 45 km, a record for driving on another world at the time."
+      "Opportunity drove about 45 km, a record for driving on another world at the time.",
+      "After the 2018 dust storm, NASA spent eight months sending more than a thousand commands to try to wake it, then declared the mission over on 13 February 2019."
     ],
     "inferred": [
       "Scientists think the early water at the landing site was very salty and acidic, while water later at Endeavour Crater was gentler."
@@ -744,6 +788,11 @@
         "title": "NASA 3D Resources",
         "url": "https://science.nasa.gov/3d-resources/",
         "publisher": "NASA"
+      },
+      {
+        "title": "NASA's Record-Setting Opportunity Rover Mission on Mars Comes to End",
+        "url": "https://www.nasa.gov/news-release/nasas-record-setting-opportunity-rover-mission-on-mars-comes-to-end/",
+        "publisher": "NASA"
       }
     ],
     "credits": "3D model: \"Mars Exploration Rover - Opportunity (MER-B)\", NASA 3D Resources. Photos: NASA/JPL-Caltech via the NASA Image and Video Library.",
@@ -774,7 +823,7 @@
     "discoveries": [
       {
         "title": "Mars shakes",
-        "text": "InSight detected more than 1,300 marsquakes, proving Mars is still geologically active.",
+        "text": "InSight detected 1,319 marsquakes, proving Mars is still geologically active.",
         "image": {
           "src": "https://images-assets.nasa.gov/image/PIA24761/PIA24761~small.jpg",
           "alt": "A seismogram: a wiggly line showing a marsquake recorded in July 2019.",
@@ -794,7 +843,7 @@
       },
       {
         "title": "A liquid metal heart",
-        "text": "Quake waves revealed that Mars has a liquid metal core, about 1,830 km in radius. That's bigger than many scientists expected."
+        "text": "Quake waves revealed that Mars has a liquid metal core, about 1,830 km in radius, roughly half the radius of Earth's core. That's bigger than many scientists expected."
       }
     ],
     "hotspots": [
@@ -899,6 +948,16 @@
         "title": "NASA 3D Resources",
         "url": "https://science.nasa.gov/3d-resources/",
         "publisher": "NASA"
+      },
+      {
+        "title": "NASA Retires InSight Mars Lander Mission After Years of Science",
+        "url": "https://www.nasa.gov/missions/insight/nasa-retires-insight-mars-lander-mission-after-years-of-science/",
+        "publisher": "NASA"
+      },
+      {
+        "title": "NASA's InSight Reveals the Deep Interior of Mars",
+        "url": "https://www.jpl.nasa.gov/news/nasas-insight-reveals-the-deep-interior-of-mars/",
+        "publisher": "NASA JPL"
       }
     ],
     "credits": "3D model: \"InSight Cruise Lander (panels deployed)\", NASA 3D Resources. Photos: NASA/JPL-Caltech via the NASA Image and Video Library.",

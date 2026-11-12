@@ -2,6 +2,7 @@
 // close to the viewport, and fall back to plain content if WebGL is missing or fails.
 import { Component, lazy, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { hasWebGL } from '../lib/util';
+import { SceneLoader } from './Preloader';
 import type { HeroProps } from '../three/HeroScene';
 import type { GlobeSceneProps } from '../three/GlobeScene';
 
@@ -38,7 +39,16 @@ export function Lazy3D({ fallback, children, className }: { fallback: ReactNode;
     <div ref={ref} className={className}>
       {ok && near ? (
         <Boundary fallback={fallback}>
-          <Suspense fallback={<div className="scene-loading">{fallback}</div>}>{children}</Suspense>
+          <Suspense
+            fallback={
+              <div className="scene-loading">
+                {fallback}
+                <SceneLoader />
+              </div>
+            }
+          >
+            {children}
+          </Suspense>
         </Boundary>
       ) : (
         fallback

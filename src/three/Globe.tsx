@@ -1,5 +1,5 @@
 // A real Moon or Mars globe built from NASA maps, with landing-site markers at true lat/lon.
-import { forwardRef, useMemo, useRef } from 'react';
+import { forwardRef, useMemo, useRef, type ReactNode } from 'react';
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Html, useTexture } from '@react-three/drei';
@@ -37,7 +37,18 @@ interface Props {
   activeSite?: string | null;
   showLabels?: boolean;
   labelOpacity?: number | (() => number);
+  /** Live marker size (1 = normal). Lets a dive shrink the dot as the camera closes in. */
+  markerScale?: () => number;
   onPick?: (id: string) => void;
+}
+
+/** Marker dot whose size can follow the camera, so it never balloons in a close-up. */
+function MarkerDot({ scale, children }: { scale?: () => number; children: ReactNode }) {
+  const ref = useRef<THREE.Group>(null);
+  useFrame(() => {
+    if (ref.current && scale) ref.current.scale.setScalar(Math.max(0.001, scale()));
+  });
+  return <group ref={ref}>{children}</group>;
 }
 
 /** Label that hides itself when its site turns to the far side of the globe. */
@@ -100,7 +111,7 @@ function Atmosphere({ radius }: { radius: number }) {
 }
 
 export const Globe = forwardRef<THREE.Group, Props>(function Globe(
-  { place, radius = 1, sites = [], activeSite = null, showLabels = true, labelOpacity = 1, onPick },
+  { place, radius = 1, sites = [], activeSite = null, showLabels = true, labelOpacity = 1, markerScale, onPick },
   ref,
 ) {
   const maps = MAPS[place];
@@ -132,14 +143,16 @@ export const Globe = forwardRef<THREE.Group, Props>(function Globe(
         const on = activeSite === s.id;
         return (
           <group key={s.id} position={p}>
-            <mesh>
-              <sphereGeometry args={[radius * (on ? 0.014 : 0.01), 16, 16]} />
-              <meshBasicMaterial color={on ? '#ffffff' : '#ffcf7a'} toneMapped={false} />
-            </mesh>
-            <mesh>
-              <sphereGeometry args={[radius * 0.024, 16, 16]} />
-              <meshBasicMaterial color="#ffcf7a" transparent opacity={on ? 0.45 : 0.25} toneMapped={false} depthWrite={false} />
-            </mesh>
+            <MarkerDot scale={markerScale}>
+              <mesh>
+                <sphereGeometry args={[radius * (on ? 0.014 : 0.01), 16, 16]} />
+                <meshBasicMaterial color={on ? '#ffffff' : '#ffcf7a'} toneMapped={false} />
+              </mesh>
+              <mesh>
+                <sphereGeometry args={[radius * 0.024, 16, 16]} />
+                <meshBasicMaterial color="#ffcf7a" transparent opacity={on ? 0.45 : 0.25} toneMapped={false} depthWrite={false} />
+              </mesh>
+            </MarkerDot>
             {showLabels && <SiteLabel label={s.label} on={on} opacity={labelOpacity} onPick={onPick ? () => onPick(s.id) : undefined} />}
           </group>
         );

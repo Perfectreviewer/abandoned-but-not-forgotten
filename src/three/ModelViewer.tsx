@@ -33,7 +33,7 @@ interface Props {
 }
 
 /** A NASA glTF, scaled to a known size and set down on the ground. */
-function NasaModel({ path, kind }: { path: string; kind: ModelKind }) {
+export function NasaModel({ path, kind }: { path: string; kind: ModelKind }) {
   const { scene } = useGLTF(path);
   const cfg = NASA_FIT[kind] ?? { fit: 2.6 };
   const obj = useMemo(() => {
@@ -116,7 +116,7 @@ function LunarModuleBackdrop({ kind }: { kind: ModelKind }) {
 }
 
 /** If a glTF fails to load, fall back to the hand-built stand-in instead of a blank canvas. */
-class ModelBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
+export class ModelBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };

@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
-import { Globe, faceSite, type Site } from './Globe';
+import { Globe, faceSite, latLonToVec, type Site } from './Globe';
 
 export interface HeroProps {
   /** 0..1, written by GSAP as the visitor scrolls. */
@@ -13,6 +13,13 @@ export interface HeroProps {
   moonSites: Site[];
   marsSites: Site[];
   onPick: (id: string) => void;
+  /** Click-to-fly: GSAP tweens value 0 -> 1 and the camera dives to that world (and site, if given). */
+  dive: { value: number; place: 'moon' | 'mars' | null; id: string | null };
+}
+
+/** Lets the camera rig ask the planets where a landing site currently is in the scene. */
+interface SiteApi {
+  locate: ((id: string, out: THREE.Vector3) => boolean) | null;
 }
 
 const MOON = new THREE.Vector3(0, 0, 0);
@@ -36,7 +43,8 @@ const KEYS_PORTRAIT: [THREE.Vector3, THREE.Vector3][] = [
   [MARS.clone().add(new THREE.Vector3(0, -1.4, 15.5)), MARS.clone().add(new THREE.Vector3(0, -2.4, 0))],
 ];
 
-function Rig({ progress }: { progress: { value: number } }) {
+function Rig({ progress, dive, api }: { progress: { value: number }; dive: HeroProps['dive']; api: SiteApi }) {
+  const goal = useMemo(() => ({ pos: new THREE.Vector3(), look: new THREE.Vector3(), n: new THREE.Vector3(), site: new THREE.Vector3() }), []);
   const portrait = useThree((s) => s.size.width < s.size.height);
   const keys = portrait ? KEYS_PORTRAIT : KEYS;
   const pos = useMemo(() => new THREE.CatmullRomCurve3(keys.map((k) => k[0]), false, 'centripetal'), [keys]);
@@ -52,16 +60,43 @@ function Rig({ progress }: { progress: { value: number } }) {
     state.camera.position.x += mouse.current.x * 0.25;
     state.camera.position.y += mouse.current.y * 0.15;
     look.getPoint(t, target);
+    if (dive.value > 0 && dive.place) {
+      // fly from the scroll path down to the chosen world, ending just above the site
+      const C = dive.place === 'moon' ? MOON : MARS;
+      const R = dive.place === 'moon' ? 2 : 1.6;
+      if (dive.id && api.locate?.(dive.id, goal.site)) {
+        goal.n.copy(goal.site).sub(C).normalize();
+        goal.pos.copy(C).addScaledVector(goal.n, R * 1.28);
+        goal.look.copy(goal.site);
+      } else {
+        goal.n.copy(state.camera.position).sub(C).normalize();
+        goal.pos.copy(C).addScaledVector(goal.n, R * 1.42);
+        goal.look.copy(C);
+      }
+      state.camera.position.lerp(goal.pos, dive.value);
+      target.lerp(goal.look, dive.value);
+    }
     state.camera.lookAt(target);
   });
   return null;
 }
 
-function Planets({ progress, moonSites, marsSites, onPick }: HeroProps) {
+function Planets({ progress, moonSites, marsSites, onPick, dive, api }: HeroProps & { api: SiteApi }) {
   const moon = useRef<THREE.Group>(null);
   const mars = useRef<THREE.Group>(null);
   const near = faceSite(8, 0); // the Moon's near side, where Apollo landed
   const labels = useRef({ moon: 0, mars: 0 });
+
+  // tell the camera rig where a site is right now (the globes keep turning)
+  api.locate = (id, out) => {
+    const onMoon = moonSites.find((s) => s.id === id);
+    const s = onMoon ?? marsSites.find((m) => m.id === id);
+    const g = onMoon ? moon.current : mars.current;
+    if (!s || !g) return false;
+    out.copy(latLonToVec(s.lat, s.lon, onMoon ? 2 : 1.6));
+    g.localToWorld(out);
+    return true;
+  };
 
   useFrame((state, dt) => {
     const t = progress.value;
@@ -72,8 +107,8 @@ function Planets({ progress, moonSites, marsSites, onPick }: HeroProps) {
       const a = faceSite(10, THREE.MathUtils.lerp(-20, 125, sweep));
       mars.current.rotation.set(a.x * 0.6, a.y, 0);
     }
-    labels.current.moon = THREE.MathUtils.damp(labels.current.moon, t > 0.16 && t < 0.45 ? 1 : 0, 6, dt);
-    labels.current.mars = THREE.MathUtils.damp(labels.current.mars, t > 0.66 && t < 0.9 ? 1 : 0, 6, dt);
+    labels.current.moon = THREE.MathUtils.damp(labels.current.moon, dive.value === 0 && t > 0.16 && t < 0.45 ? 1 : 0, 6, dt);
+    labels.current.mars = THREE.MathUtils.damp(labels.current.mars, dive.value === 0 && t > 0.66 && t < 0.9 ? 1 : 0, 6, dt);
   });
 
   return (
@@ -91,6 +126,7 @@ function Planets({ progress, moonSites, marsSites, onPick }: HeroProps) {
 }
 
 export default function HeroScene(props: HeroProps) {
+  const api = useMemo<SiteApi>(() => ({ locate: null }), []);
   return (
     <Canvas dpr={[1, 1.6]} camera={{ fov: 38, near: 0.1, far: 400, position: [0, 0.4, 7.2] }} gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.15 }} aria-hidden="true">
       <color attach="background" args={['#020206']} />
@@ -99,9 +135,9 @@ export default function HeroScene(props: HeroProps) {
       <directionalLight position={[-12, 3, 7]} intensity={4} />
       <Stars radius={120} depth={60} count={7000} factor={4} saturation={0} fade speed={0.4} />
       <Suspense fallback={null}>
-        <Planets {...props} />
+        <Planets {...props} api={api} />
       </Suspense>
-      <Rig progress={props.progress} />
+      <Rig progress={props.progress} dive={props.dive} api={api} />
       <EffectComposer multisampling={0}>
         <Bloom intensity={0.6} luminanceThreshold={0.85} mipmapBlur />
         <Vignette offset={0.25} darkness={0.75} />

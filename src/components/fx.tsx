@@ -1,82 +1,10 @@
-// Global premium effects: intro loader, page-transition curtain,
+// Global premium effects: page-transition curtain,
 // split-text reveals, scroll-reactive marquee, image lightbox and toasts.
-import { createElement, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { createElement, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../lib/gsap';
 import { stopScroll, useMagnetic } from '../lib/motion';
 import type { NasaImage } from '../data/types';
-
-// ---------- intro loader ----------
-/** First visit in a session: a short count-up and title reveal, then the curtain lifts. */
-export function Preloader() {
-  const [show, setShow] = useState(() => {
-    try {
-      return !prefersReducedMotion() && !sessionStorage.getItem('abnf.intro');
-    } catch {
-      return false;
-    }
-  });
-  const root = useRef<HTMLDivElement>(null);
-  const num = useRef<HTMLSpanElement>(null);
-
-  useLayoutEffect(() => {
-    if (!show) return;
-    try {
-      sessionStorage.setItem('abnf.intro', '1');
-    } catch {
-      /* storage blocked: the intro may replay, which is harmless */
-    }
-    stopScroll(true);
-    const o = { v: 0 };
-    const tl = gsap.timeline({
-      onComplete: () => {
-        stopScroll(false);
-        setShow(false);
-      },
-    });
-    tl.from('.pre-word', { yPercent: 110, duration: 0.9, stagger: 0.08, ease: 'power4.out' })
-      .to(
-        o,
-        {
-          v: 100,
-          duration: 1.3,
-          ease: 'power2.inOut',
-          onUpdate: () => {
-            if (num.current) num.current.textContent = String(Math.round(o.v)).padStart(3, '0');
-          },
-        },
-        0,
-      )
-      .to('.pre-bar i', { scaleX: 1, duration: 1.3, ease: 'power2.inOut' }, 0)
-      .to('.pre-inner', { yPercent: -30, autoAlpha: 0, duration: 0.6, ease: 'power3.in' }, '+=0.15')
-      .to(root.current, { clipPath: 'inset(0 0 100% 0)', duration: 0.9, ease: 'expo.inOut' }, '-=0.25');
-    return () => {
-      tl.kill();
-      stopScroll(false);
-    };
-  }, [show]);
-
-  if (!show) return null;
-  return (
-    <div ref={root} className="preloader" aria-hidden="true">
-      <div className="pre-inner">
-        <p className="pre-title">
-          {['Abandoned', 'but', 'Not', 'Forgotten'].map((w) => (
-            <span key={w} className="pre-mask">
-              <span className="pre-word">{w}</span>
-            </span>
-          ))}
-        </p>
-        <div className="pre-bar">
-          <i />
-        </div>
-        <p className="pre-num">
-          <span ref={num}>000</span>
-        </p>
-      </div>
-    </div>
-  );
-}
 
 // ---------- page transition ----------
 /** A curtain sweeps across on every route change while the new page settles in. */

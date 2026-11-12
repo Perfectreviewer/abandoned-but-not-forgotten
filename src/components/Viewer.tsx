@@ -2,6 +2,7 @@ import { Component, lazy, Suspense, useEffect, useRef, useState, type ReactNode 
 import { AnimatePresence, motion } from 'framer-motion';
 import type { SpaceObject } from '../data/types';
 import { hasWebGL, useReducedMotion } from '../lib/util';
+import { SceneLoader } from './Preloader';
 
 const ModelViewer = lazy(() => import('../three/ModelViewer'));
 
@@ -51,12 +52,16 @@ export function Viewer({ o }: { o: SpaceObject }) {
       <div className="viewer-stage" ref={box}>
         {webgl && near ? (
           <CanvasBoundary fallback={fallback}>
-            <Suspense fallback={<div className="viewer-loading">Loading 3D model…</div>}>
+            <Suspense fallback={<div className="viewer-loading">
+              <SceneLoader label="Preparing 3D model" />
+            </div>}>
               <ModelViewer object={o} active={active} onHotspot={toggle} reducedMotion={reduced} />
             </Suspense>
           </CanvasBoundary>
         ) : webgl ? (
-          <div className="viewer-loading">Loading 3D model…</div>
+          <div className="viewer-loading">
+              <SceneLoader label="Preparing 3D model" />
+            </div>
         ) : (
           fallback
         )}

@@ -1,10 +1,11 @@
-import { useMemo, useRef } from 'react';
-import { ObjectCard, Planet, Reveal } from '../components/bits';
+import { useEffect, useMemo, useRef, type MouseEvent } from 'react';
+import { Planet, Reveal } from '../components/bits';
+import { Hangar } from '../components/Hangar';
 import { MagneticLink, Marquee, SplitReveal } from '../components/fx';
 import { useCountUp } from '../lib/motion';
 import { HeroCanvas } from '../components/Scenes';
-import { gsap, useGsap } from '../lib/gsap';
-import { CORE, OBJECTS, useAnswers } from '../lib/util';
+import { gsap, prefersReducedMotion, useGsap } from '../lib/gsap';
+import { CORE, hasWebGL, OBJECTS, useAnswers } from '../lib/util';
 
 const CHAPTERS = [
   ['Meet the machine', 'Spin a real 3D model and tap its parts.'],
@@ -14,19 +15,26 @@ const CHAPTERS = [
   ['The unfinished question', 'You decide what the next mission should do.'],
 ];
 
-function ChooseButtons() {
+type Fly = (place: 'moon' | 'mars', id: string | null, href: string) => void;
+
+function ChooseButtons({ fly }: { fly: Fly }) {
+  const go = (place: 'moon' | 'mars') => (e: MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    fly(place, null, '#/' + place);
+  };
   const moon = CORE.filter((o) => o.location === 'moon');
   const mars = CORE.filter((o) => o.location === 'mars');
   return (
     <div className="choose" role="group" aria-label="Choose where to start">
-      <a className="choose-btn moon" href="#/moon">
+      <a className="choose-btn moon" href="#/moon" onClick={go('moon')} data-cursor="Fly">
         <Planet place="moon" size={44} />
         <span>
           <strong>Start on the Moon</strong>
           <small>{moon.length} objects · 1967–1972</small>
         </span>
       </a>
-      <a className="choose-btn mars" href="#/mars">
+      <a className="choose-btn mars" href="#/mars" onClick={go('mars')} data-cursor="Fly">
         <Planet place="mars" size={44} />
         <span>
           <strong>Start on Mars</strong>
@@ -44,6 +52,53 @@ export default function Home() {
   const moon = CORE.filter((o) => o.location === 'moon');
   const mars = CORE.filter((o) => o.location === 'mars');
   const sites = (list: typeof CORE) => list.filter((o) => o.coordinates).map((o) => ({ id: o.id, label: o.shortName, lat: o.coordinates!.lat, lon: o.coordinates!.lon }));
+
+  const dive = useMemo<{ value: number; place: 'moon' | 'mars' | null; id: string | null }>(() => ({ value: 0, place: null, id: null }), []);
+  const veil = useRef<HTMLDivElement>(null);
+  const flying = useRef(false);
+
+  useEffect(
+    () => () => {
+      gsap.killTweensOf(dive);
+      dive.value = 0;
+      dive.place = null;
+    },
+    [dive],
+  );
+
+  /** Clicking a world or a landing site: the camera flies down to it, then the page opens. */
+  const fly: Fly = (place, id, href) => {
+    if (flying.current) return;
+    if (prefersReducedMotion() || !hasWebGL()) {
+      window.location.hash = href;
+      return;
+    }
+    flying.current = true;
+    dive.place = place;
+    dive.id = id;
+    // a longer flight if the camera has to cross from one world to the other
+    const far = (place === 'mars') !== progress.value > 0.5;
+    const d = far ? 2.6 : 1.8;
+    gsap
+      .timeline({
+        onComplete: () => {
+          window.location.hash = href;
+        },
+      })
+      .to('.flight-step, .scroll-cue', { autoAlpha: 0, duration: 0.35, overwrite: true }, 0)
+      .to(dive, { value: 1, duration: d, ease: 'power2.inOut' }, 0)
+      .fromTo(veil.current, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: 'power2.in' }, d - 0.45);
+  };
+  const flyToObject = (id: string) => {
+    const o = CORE.find((x) => x.id === id);
+    if (o && (o.location === 'moon' || o.location === 'mars')) fly(o.location, id, '#/object/' + id);
+    else window.location.hash = '#/object/' + id;
+  };
+  const linkFly = (id: string) => (e: MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    flyToObject(id);
+  };
 
   // GSAP: pin the 3D stage and scrub the camera flight + captions with the scroll.
   useGsap(track, (reduced) => {
@@ -77,7 +132,8 @@ export default function Home() {
     <>
       <section className="flight" ref={track} aria-label="Fly from the Moon to Mars">
         <div className="flight-stage">
-          <HeroCanvas progress={progress} moonSites={sites(moon)} marsSites={sites(mars)} onPick={(id) => (window.location.hash = `#/object/${id}`)} fallback={fallback} />
+          <HeroCanvas progress={progress} moonSites={sites(moon)} marsSites={sites(mars)} onPick={flyToObject} dive={dive} fallback={fallback} />
+          <div ref={veil} className="dive-veil" aria-hidden="true" />
 
           <div className="flight-step step-0">
             <p className="eyebrow">Six machines left on the Moon and Mars</p>
@@ -87,7 +143,7 @@ export default function Home() {
               <span className="accent">Their stories didn’t.</span>
             </h1>
             <p className="lede">Meet the hardware NASA left behind, find out what it discovered, and answer the question each one left for your generation.</p>
-            <ChooseButtons />
+            <ChooseButtons fly={fly} />
           </div>
 
           <div className="flight-step step-1 right">
@@ -96,7 +152,10 @@ export default function Home() {
             <ul className="flight-list">
               {moon.map((o) => (
                 <li key={o.id}>
-                  <a href={`#/object/${o.id}`}>{o.shortName}</a> <span>{o.year}</span>
+                  <a href={`#/object/${o.id}`} onClick={linkFly(o.id)}>
+                    {o.shortName}
+                  </a>{' '}
+                  <span>{o.year}</span>
                 </li>
               ))}
             </ul>
@@ -115,7 +174,10 @@ export default function Home() {
             <ul className="flight-list">
               {mars.map((o) => (
                 <li key={o.id}>
-                  <a href={`#/object/${o.id}`}>{o.shortName}</a> <span>{o.year}</span>
+                  <a href={`#/object/${o.id}`} onClick={linkFly(o.id)}>
+                    {o.shortName}
+                  </a>{' '}
+                  <span>{o.year}</span>
                 </li>
               ))}
             </ul>
@@ -125,7 +187,7 @@ export default function Home() {
             <p className="eyebrow">Your turn</p>
             <h2>Every machine left a question unanswered.</h2>
             <p className="lede">Pick a world and find out which one is waiting for you.</p>
-            <ChooseButtons />
+            <ChooseButtons fly={fly} />
           </div>
 
           <p className="scroll-cue" aria-hidden="true">Scroll to fly ↓</p>
@@ -153,16 +215,12 @@ export default function Home() {
 
       <HowItWorks />
 
-      <section className="section">
-        <p className="eyebrow">The six</p>
+      <section className="section hangar-section">
+        <p className="eyebrow">The hangar · six machines</p>
         <SplitReveal text="Pick any machine to begin" />
-        <div className="card-grid">
-          {CORE.map((o, i) => (
-            <Reveal key={o.id} delay={(i % 3) * 0.08}>
-              <ObjectCard o={o} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <Hangar />
+        </Reveal>
       </section>
 
       <section className="section split">

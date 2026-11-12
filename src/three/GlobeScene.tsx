@@ -15,10 +15,15 @@ export interface GlobeSceneProps {
   onPick?: (id: string) => void;
   /** When given, scrolling drives a zoom from orbit (0) to the active site (1). */
   zoom?: { value: number };
+  /** Click-to-dive: GSAP tweens this 0 -> 1 and the camera flies down to the active site. */
+  dive?: { value: number };
+  /** True while a dive is in progress: drag is disabled and labels hide. */
+  diving?: boolean;
   reducedMotion?: boolean;
 }
 
-function Spinner({ place, sites, active, onPick, zoom, reducedMotion }: GlobeSceneProps) {
+function Spinner({ place, sites, active, onPick, zoom, dive, diving, reducedMotion }: GlobeSceneProps) {
+  const diveFrom = useRef<THREE.Vector3 | null>(null);
   const tilt = useRef<THREE.Group>(null);
   const spin = useRef<THREE.Group>(null);
   const rot = useRef({ x: 0.15, y: 0 });
@@ -48,7 +53,19 @@ function Spinner({ place, sites, active, onPick, zoom, reducedMotion }: GlobeSce
   const tmp = useMemo(() => new THREE.Vector3(), []);
 
   useFrame((_, dt) => {
-    if (auto.current && !reducedMotion && !zoom) rot.current.y += dt * 0.08;
+    if (auto.current && !reducedMotion && !zoom && !diving) rot.current.y += dt * 0.08;
+    if (dive && dive.value > 0) {
+      // fly from wherever the camera is to just above the site (which faces +z)
+      if (!diveFrom.current) diveFrom.current = camera.position.clone();
+      const e = dive.value;
+      tmp.set(0, 0.2, 1.24);
+      camera.position.lerpVectors(diveFrom.current, tmp, e);
+      // arc slightly outward mid-flight so it reads as a descent, not a straight zoom
+      camera.position.y += Math.sin(e * Math.PI) * 0.35;
+      camera.lookAt(0, 0, THREE.MathUtils.lerp(0, 1, e));
+    } else if (diveFrom.current) {
+      diveFrom.current = null;
+    }
     if (tilt.current) tilt.current.rotation.x = rot.current.x;
     if (spin.current) spin.current.rotation.y = rot.current.y;
     if (zoom) {
@@ -64,7 +81,8 @@ function Spinner({ place, sites, active, onPick, zoom, reducedMotion }: GlobeSce
 
   return (
     <group ref={tilt}>
-      <Globe ref={spin} place={place} radius={1} sites={sites} activeSite={active} onPick={onPick} labelOpacity={zoom ? () => (zoom.value > 0.75 ? 0 : 1) : 1} />
+      <Globe ref={spin} place={place} radius={1} sites={sites} activeSite={active} onPick={onPick} markerScale={zoom ? () => 1 - zoom.value * 0.8 : dive ? () => 1 - dive.value * 0.86 : undefined}
+        labelOpacity={zoom ? () => (zoom.value > 0.75 ? 0 : 1) : dive ? () => (dive.value > 0.25 ? 0 : 1) : 1} />
     </group>
   );
 }
@@ -79,7 +97,7 @@ export default function GlobeScene(props: GlobeSceneProps) {
       <Suspense fallback={null}>
         <Spinner {...props} />
       </Suspense>
-      {!props.zoom && <OrbitControls enablePan={false} enableZoom={false} rotateSpeed={0.5} />}
+      {!props.zoom && <OrbitControls enabled={!props.diving} enablePan={false} enableZoom={false} rotateSpeed={0.5} />}
       <EffectComposer multisampling={0}>
         <Bloom intensity={0.5} luminanceThreshold={0.85} mipmapBlur />
         <Vignette offset={0.3} darkness={0.7} />
